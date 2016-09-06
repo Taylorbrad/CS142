@@ -53,4 +53,7 @@ int main()
   mediumTotal = mediumPizzas * mediumPrice;
   largeTotal = largePizzas * largePizzas;
   totalBill = smallTotal + mediumTotal + largeTotal;
+  totalBill = (totalBill * tipPercentage) + totalBill;
+  
+  cout << "The total bill is: " << totalBill;
 }
