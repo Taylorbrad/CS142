@@ -6,7 +6,6 @@ int main()
 {
   int numOfGuests = 0;
   int numOfGuestsTemp = 0;
-  double tipPercentage = 0;
   int largePizzas = 0;
   int mediumPizzas = 0;
   int smallPizzas = 0;
