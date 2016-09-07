@@ -5,21 +5,13 @@ using namespace std;
 
 /*
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
-
 READY TO BE GRADED
-
 **Description**
-
 **Description of inputs**
-
 **Description of outputs**
-
 Test Case One:
-
 Test Case Two:
-
 Test Case Three:
-
 */
 
 int main()
@@ -79,7 +71,7 @@ int main()
 	totalBill = (totalBill * (tipPercentage / 100)) + totalBill;
 
 	//cout << "ST: " << smallTotal << "MT: " << mediumTotal << "LT: " << largeTotal;
-	cout << "\nThe total bill is: " << totalBill << setprecision(2) << "\n\n";
+	cout << "\nThe total bill is: " << fixed << setprecision(0) << totalBill << "\n\n";
 
 	system("pause");
 }
