@@ -19,12 +19,12 @@ int main()
   double smallTotal = 0;
   double mediumTotal = 0;
   double largeTotal = 0;
-  const double smallDiameter = 12;
-  const double mediumDiameter = 16;
-  const double largeDiameter = 20;
-  const double smallPrice = 7.28;
-  const double mediumPrice = 11.48;
-  const double largePrice = 14.68;
+  const double SMALL_DIAMETER = 12;
+  const double MEDIUM_DIAMETER = 16;
+  const double LARGE_DIAMETER = 20;
+  const double SMALL_PRICE = 7.28;
+  const double MEDIUM_PRICE = 11.48;
+  const double LARGE_PRICE = 14.68;
   const double PI = 3.14159;
   
   cout << "Amount of guests attending: ";
@@ -39,9 +39,9 @@ int main()
   
   cout << "\nLarge:" << largePizzas << "\nMedium:" << mediumPizzas << "\nSmall: " << smallPizzas;
   
-  smallArea = smallPizzas * ( PI * pow((smallDiameter / 2), 2));
-  mediumArea = mediumPizzas * ( PI * pow((mediumDiameter / 2), 2));
-  largeArea = largePizzas * ( PI * pow((largeDiameter / 2), 2));
+  smallArea = smallPizzas * ( PI * pow((SMALL_DIAMETER / 2), 2));
+  mediumArea = mediumPizzas * ( PI * pow((MEDIUM_DIAMETER / 2), 2));
+  largeArea = largePizzas * ( PI * pow((LARGE_DIAMETER / 2), 2));
   totalArea = smallArea + mediumArea + largeArea;
   areaPerPerson = totalArea / numOfGuests;
   cout << "\nThe total area of pizza is: " << totalArea << " sq. inches\nEach person can eat: " << areaPerPerson << " sq. inches\n";
@@ -49,9 +49,9 @@ int main()
   cout << "Tip percentage: ";
   cin >> tipPercentage;
   
-  smallTotal = smallPizzas * smallPrice;
-  mediumTotal = mediumPizzas * mediumPrice;
-  largeTotal = largePizzas * largePizzas;
+  smallTotal = smallPizzas * SMALL_PRICE;
+  mediumTotal = mediumPizzas * MEDIUM_PRICE;
+  largeTotal = largePizzas * LARGE_PRICE;
   totalBill = smallTotal + mediumTotal + largeTotal;
   totalBill = (totalBill * tipPercentage) + totalBill;
   
