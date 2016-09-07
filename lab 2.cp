@@ -4,6 +4,13 @@ using namespace std;
 
 int main()
 {
+  const double SMALL_DIAMETER = 12;
+  const double MEDIUM_DIAMETER = 16;
+  const double LARGE_DIAMETER = 20;
+  const double SMALL_PRICE = 7.28;
+  const double MEDIUM_PRICE = 11.48;
+  const double LARGE_PRICE = 14.68;
+  const double PI = 3.14159;
   int numOfGuests = 0;
   int numOfGuestsTemp = 0;
   int largePizzas = 0;
@@ -19,13 +26,7 @@ int main()
   double smallTotal = 0;
   double mediumTotal = 0;
   double largeTotal = 0;
-  const double SMALL_DIAMETER = 12;
-  const double MEDIUM_DIAMETER = 16;
-  const double LARGE_DIAMETER = 20;
-  const double SMALL_PRICE = 7.28;
-  const double MEDIUM_PRICE = 11.48;
-  const double LARGE_PRICE = 14.68;
-  const double PI = 3.14159;
+  
   
   cout << "Amount of guests attending: ";
   cin >> numOfGuests;
