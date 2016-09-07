@@ -38,23 +38,26 @@ int main()
   numOfGuestsTemp -= (mediumPizzas * 3);
   smallPizzas = numOfGuestsTemp;
   
-  cout << "\nLarge:" << largePizzas << "\nMedium:" << mediumPizzas << "\nSmall: " << smallPizzas;
+  cout << "\nLarge: " << largePizzas << "\nMedium: " << mediumPizzas << "\nSmall: " << smallPizzas;
   
   smallArea = smallPizzas * ( PI * pow((SMALL_DIAMETER / 2), 2));
   mediumArea = mediumPizzas * ( PI * pow((MEDIUM_DIAMETER / 2), 2));
   largeArea = largePizzas * ( PI * pow((LARGE_DIAMETER / 2), 2));
+  
   totalArea = smallArea + mediumArea + largeArea;
   areaPerPerson = totalArea / numOfGuests;
-  cout << "\nThe total area of pizza is: " << totalArea << " sq. inches\nEach person can eat: " << areaPerPerson << " sq. inches\n";
   
-  cout << "Tip percentage: ";
+  cout << "\n\nThe total area of pizza is: " << totalArea << " sq. inches\nEach person can eat: " << areaPerPerson << " sq. inches\n";
+  
+  cout << "\nTip percentage: ";
   cin >> tipPercentage;
   
   smallTotal = smallPizzas * SMALL_PRICE;
   mediumTotal = mediumPizzas * MEDIUM_PRICE;
   largeTotal = largePizzas * LARGE_PRICE;
   totalBill = smallTotal + mediumTotal + largeTotal;
-  totalBill = (totalBill * tipPercentage) + totalBill;
+  totalBill = (totalBill * (tipPercentage / 100)) + totalBill;
   
-  cout << "The total bill is: " << totalBill;
+  //cout << "ST: " << smallTotal << "MT: " << mediumTotal << "LT: " << largeTotal;
+  cout << "\nThe total bill is: " << totalBill;
 }
