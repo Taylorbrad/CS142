@@ -2,6 +2,23 @@
 #include <string>
 using namespace std;
 
+/*
+Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
+
+READY TO BE GRADED
+
+**Description**
+**Description of inputs**
+**Description of outputs**
+
+Test Case One:
+
+Test Case Two:
+
+Test Case Three:
+
+*/
+
 int main() {
     
     double milesPerYear = 0;
