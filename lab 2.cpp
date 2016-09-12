@@ -6,9 +6,13 @@ using namespace std;
 /*
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
 READY TO BE GRADED
-**Description**
-**Description of inputs**
-**Description of outputs**
+
+This is a program which calculates the total bill for a group of people going to a pizza place.
+
+This program accepts the amount of people present, and the tip percentage as the inputs.
+
+This program outputs the area that each person can eat, how many of each type of pizza, and the total bill.
+
 Test Case One:
 Test Case Two:
 Test Case Three:
