@@ -7,11 +7,11 @@ using namespace std;
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
 READY TO BE GRADED
 
-This is a program which calculates the total bill for a group of people going to a pizza place.
+Purpose: This is a program which calculates the total bill for a group of people going to a pizza place.
 
-This program accepts the amount of people present, and the tip percentage as the inputs.
+Inputs: The amount of people eating and the tip percentage.
 
-This program outputs the area that each person can eat, how many of each type of pizza, and the total bill.
+Outputs: The area that each person can eat, how many of each type of pizza, and the total bill.
 
 Test Case One:
 Test Case Two:
