@@ -75,7 +75,7 @@ int main()
 	totalBill = (totalBill * (tipPercentage / 100)) + totalBill;
 
 	//cout << "ST: " << smallTotal << "MT: " << mediumTotal << "LT: " << largeTotal;
-	cout << "\nThe total bill is: " << fixed << setprecision(0) << totalBill << "\n\n";
+	cout << "\nThe total bill is: $" << fixed << setprecision(0) << totalBill << "\n\n";
 
 	system("pause");
 }
