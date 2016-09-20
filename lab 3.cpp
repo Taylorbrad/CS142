@@ -6,12 +6,38 @@ using namespace std;
 /*
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
 READY TO BE GRADED
-**Description**
-**Description of inputs**
-**Description of outputs**
+
+Description: A program that takes the capabilities and prices of cars and determines which would be ideal for the user.
+
+Inputs: The user will input the miles driven for year, expected gas price per gallon, and the efficiency, cost, and resale
+value of each car type. They will also input their prefferred criteria, either total cost or gas consumption.
+
+Outputs: The program will output the total cost and gas consumption for each car, as well as the car that will be best for them.
+
 Test Case One:
+Inputs:
+Miles/Year: 10000, gas price: 1.50, cost of hybrid-nonhybrid: 50000-24000, MPG hybrid-nonhybrid: 30-24, resale value hybrid-nonhybrid: 45000-22000
+Preference: Total Cost
+
+Outputs:
+Total Gas hybrid-nonhybrid: 1666.67-2083.33 gallons, total cost hybrid-nonhybrid: $7500.00, $5125.00
+Non hybrid car better for total cost.
+
 Test Case Two:
+Inputs:
+Miles/Year: 100000, gas price: 2.56, cost of hybrid-nonhybrid: 35000-15000, MPG hybrid-nonhybrid: 30-24, resale value hybrid-nonhybrid: 25000-10000
+Preference: Total Cost
+Outputs:
+Total Gas hybrid-nonhybrid: 16666.67-20833.33 gallons, total cost hybrid-nonhybrid: $52666.67-$58333.33
+Hybrid car better for total cost.
+
 Test Case Three:
+Inputs:
+Miles/Year: 17000, gas price: 3.00, cost of hybrid-nonhybrid: 25000, MPG hybrid-nonhybrid: 32-25, resale value hybrid-nonhybrid: 20000-20000
+Preference: Gas Consumption
+Outputs:
+Total Gas hybrid-nonhybrid: 2656.25-3400.00 gallons, total cost hybrid-nonhybrid: $12968.75-$13200.00
+Hybrid car better for gas consumption.
 */
 
 int main() {
@@ -131,11 +157,12 @@ int main() {
     
     
     cout << "  --Hybrid Car Statistics--" << endl;
-    cout << "Total gas consumption over 5 years: " << fixed << setprecision(2) << totalGallonsHybrid << endl;
-    cout << "Total cost over 5 years: " << totalCostHybrid << endl << endl;
+    cout << "Total gas consumption over 5 years: " << fixed << setprecision(2) << totalGallonsHybrid << " gallons" << endl;
+    cout << "Total cost over 5 years: $" << totalCostHybrid << endl << endl;
     cout << "  --Non Hybrid Car Statistics--" << endl;
-    cout << "Total gas consumption over 5 years: " << totalGallonsNonHybrid << endl;
-    cout << "Total cost over 5 years: " << totalCostNonHybrid << endl << endl;
+    cout << "Total gas consumption over 5 years: " << totalGallonsNonHybrid << " gallons" << endl;
+    cout << "Total cost over 5 years: $" << totalCostNonHybrid << endl << endl;
+    
     do
     {
         if (toupper(userSelection) == toupper('g'))
@@ -168,7 +195,7 @@ int main() {
         }
         else
         {
-            cout << "Please input G for gas, or T for total: ";
+            cout << "Please input G for gas, or T for total.";
             cin >> userSelection;
         }
     } while ((toupper(userSelection) != toupper('t')) && (toupper(userSelection) != toupper('g')));
