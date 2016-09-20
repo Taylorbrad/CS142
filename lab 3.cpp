@@ -163,40 +163,37 @@ int main() {
     cout << "Total gas consumption over 5 years: " << totalGallonsNonHybrid << " gallons" << endl;
     cout << "Total cost over 5 years: $" << totalCostNonHybrid << endl << endl;
     
-    do
+    if (toupper(userSelection) == toupper('g'))
     {
-        if (toupper(userSelection) == toupper('g'))
+        if (totalGallonsHybrid > totalGallonsNonHybrid)
         {
-            if (totalGallonsHybrid > totalGallonsNonHybrid)
-            {
-                optionOne = nonHybridString;
-                optionTwo = hybridString;
-            }
-            else
-            {
-                optionOne = hybridString;
-                optionTwo = nonHybridString;
-            }
-            cout << "The " << optionOne << " is better than the " << optionTwo << " When gas is the principle concern.";
-        }
-        else if (toupper(userSelection) == toupper('t'))
-        {
-            if (totalCostHybrid > totalCostNonHybrid)
-            {
-                optionOne = nonHybridString;
-                optionTwo = hybridString;
-            }
-            else
-            {
-                optionOne = hybridString;
-                optionTwo = nonHybridString;
-            }
-            cout << "The " << optionOne << " is better than the " << optionTwo << " When total cost is the principle concern.";
+            optionOne = nonHybridString;
+            optionTwo = hybridString;
         }
         else
         {
-            cout << "Please input G for gas, or T for total.";
-            cin >> userSelection;
+            optionOne = hybridString;
+            optionTwo = nonHybridString;
         }
-    } while ((toupper(userSelection) != toupper('t')) && (toupper(userSelection) != toupper('g')));
+        cout << "The " << optionOne << " is better than the " << optionTwo << " When gas is the principle concern.";
+    }
+    else if (toupper(userSelection) == toupper('t'))
+    {
+        if (totalCostHybrid > totalCostNonHybrid)
+        {
+            optionOne = nonHybridString;
+            optionTwo = hybridString;
+        }
+        else
+        {
+            optionOne = hybridString;
+            optionTwo = nonHybridString;
+        }
+        cout << "The " << optionOne << " is better than the " << optionTwo << " When total cost is the principle concern.";
+    }
+    else
+    {
+        cout << "Please input G for gas, or T for total.";
+        cin >> userSelection;
+    }
 }
