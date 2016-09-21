@@ -52,15 +52,33 @@ for (int selection = 1; selection != 0;)
         case 1:
             cout << "Which slot would you like to drop the chip into? (0-8): ";
             cin >> slotSelection;
-            cout << endl;
+            cout << endl << endl;
+            cout << "This visual depicts the path that the Plinko chip traversed:" << endl << endl;;
+            
             for (int i = 0; i < 10; ++i)
             {
+                //Place "plinko chip" within row, then output row with chip
                 plinkoRow.replace(slotSelection + 1, 1, "O");
                 cout << plinkoRow << endl;
-                //cout << slotSelection << endl;
+                
+                //Set row back to normal, for next replacement
                 plinkoRow = "|.........|";
+                
                 //Determine whether chip moves left or right
                 randomZeroOrOne = rand() % 2;
+                
+                /*
+                //THIS IS THE RANDOM SLASH THING THAT I WORKED ON FOREVER FOR NO REASON, STILL WORKS JUST DOESNT RLLY LOOK GOOD
+                
+                if (randomZeroOrOne == 0 || slotSelection == 8)
+                {
+                    plinkoRow.replace(slotSelection + 1, 1, "/");
+                }
+                else if (randomZeroOrOne == 1)
+                {
+                    plinkoRow.replace(slotSelection + 1, 1, "\\");
+                }
+                */
                 
                 if ((randomZeroOrOne == 0 && slotSelection != 0) || slotSelection == 8)
                 {
@@ -70,9 +88,7 @@ for (int selection = 1; selection != 0;)
                 {
                     ++slotSelection;
                 }
-                //plinkoRow.replace(slotSelection - 2, 1, "O");
-                
-                //cout << endl << "Current Slot: " << slotSelection;
+                //plinkoRow = "|.........|";
             }
             
         break;
