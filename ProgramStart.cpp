@@ -1,8 +1,6 @@
 /*
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
 
-READY TO BE GRADED
-
 Description: 
 
 Inputs: 
@@ -27,14 +25,6 @@ using namespace std;
 
 int main()
 {
-int selection = 0;
-
-
-cout << "Select an option:" << endl;
-cout << "0: Quit" << endl;
-cout << "1: Drop a single Plinko chip into one slot" << endl;
-cout << "2: Drop multiple Plinko chips into one slot" << endl << endl;
-cin >> selection;
-
+//code here
 return 0;
 }
