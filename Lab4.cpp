@@ -19,7 +19,7 @@ Outputs:
 #include <cmath>
 #include <ctime>
 using namespace std;
-
+//THERE IS STILL A BIG PROBLEM, AVERAGE WINNINGS ARE NOT CALCULATING CORRECTLY EXCEPT FOR SLOT 2, AND MAYBE OTHERS IDK HAVENT TESTED THEM ALL.
 int main()
 {
     //string plinkoRow = "|.........|";
@@ -37,6 +37,8 @@ int main()
     
 for (int selection = 1; selection != 0;)
 {
+    winningsTotal = 0;
+    
     cout << endl << "Select an option:" << endl;
     cout << "0: Quit" << endl;
     cout << "1: Drop a single Plinko chip into one slot" << endl;
@@ -56,7 +58,7 @@ for (int selection = 1; selection != 0;)
             cout << endl << endl;
             //cout << "This visual depicts the path that the Plinko chip traversed:" << endl << endl;;
             cout << "[";
-            for (int i = 0; i < 12; ++i)
+            for (int i = 0; i < 13; ++i)
             {
                 cout << fixed << setprecision(1) << slotSelection << " ";
                     
