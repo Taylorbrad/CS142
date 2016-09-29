@@ -19,11 +19,9 @@ Outputs:
 #include <cmath>
 #include <ctime>
 using namespace std;
-//THERE IS STILL A BIG PROBLEM, AVERAGE WINNINGS ARE NOT CALCULATING CORRECTLY EXCEPT FOR SLOT 2, AND MAYBE OTHERS IDK HAVENT TESTED THEM ALL.
-//APPARENTLY I HAVE HIT THE SAME ISSUE AS OTHERS, AS IT IS REFERENCED ON #5 ON THE FAQ ON THE LEARNING SUITE ASSIGNMENT PAGE.
+
 int main()
 {
-    //string plinkoRow = "|.........|";
     double slotSelection = 0;
     double slotSelectionLocal = 0;
     double winningsAverage = 0;
@@ -57,47 +55,22 @@ for (int selection = 1; selection != 0;)
             cout << "Which slot would you like to drop the chip into? (0-8): ";
             cin >> slotSelection;
             cout << endl << endl;
-            //cout << "This visual depicts the path that the Plinko chip traversed:" << endl << endl;;
             cout << "[";
             for (int i = 0; i < 13; ++i)
             {
                 cout << fixed << setprecision(1) << slotSelection << " ";
-                    
-                /* THIS IS MY COOL PLINKO OUTPUT BUT APPARENTLY ITS WRONG SO WHATEVER
-                //Place "plinko chip" within row, then output row with chip
-                plinkoRow.replace(slotSelection + 1, 1, "O");
-                cout << plinkoRow << endl;
-                
-                //Set row back to normal, for next replacement
-                plinkoRow = "|.........|";
-                */
                 
                 //Determine whether chip moves left or right
                 randomZeroOrOne = rand() % 2;
                 
-                
-                /*
-                //THIS IS THE RANDOM SLASH THING THAT I WORKED ON FOREVER FOR NO REASON, STILL WORKS JUST DOESNT RLLY LOOK GOOD
-                
-                if (randomZeroOrOne == 0 || slotSelection == 8)
+                if ((randomZeroOrOne == 0 && slotSelection != 0) || slotSelection == 8)
                 {
-                    plinkoRow.replace(slotSelection + 1, 1, "/");
+                    slotSelection -= .5;
                 }
-                else if (randomZeroOrOne == 1)
+                else if (randomZeroOrOne == 1 || slotSelection == 0)
                 {
-                    plinkoRow.replace(slotSelection + 1, 1, "\\");
+                    slotSelection += .5;
                 }
-                */
-                
-                    if ((randomZeroOrOne == 0 && slotSelection != 0) || slotSelection == 8)
-                    {
-                        slotSelection -= .5;
-                    }
-                    else if (randomZeroOrOne == 1 || slotSelection == 0)
-                    {
-                        slotSelection += .5;
-                    }
-                    //plinkoRow = "|.........|";
             }
             cout << slotSelection;
             
@@ -108,26 +81,26 @@ for (int selection = 1; selection != 0;)
             
                 case 0:
                 case 8:
-                winningsTotal = 100;
+                    winningsTotal = 100;
                 break;
                 
                 case 1:
                 case 7:
-                winningsTotal = 500;
+                    winningsTotal = 500;
                 break;
                 
                 case 2:
                 case 6:
-                winningsTotal = 1000;
+                    winningsTotal = 1000;
                 break;
                 
                 case 3:
                 case 5:
-                winningsTotal = 0;
+                    winningsTotal = 0;
                 break;
                 
                 case 4:
-                winningsTotal = 10000;
+                    winningsTotal = 10000;
                 break;
             }
             
@@ -161,11 +134,6 @@ for (int selection = 1; selection != 0;)
                 {
                     slotSelectionLocal += .5;
                 }
-                else
-                {
-                    cout << "WHOAH DUDE SOMETHING WENT WRONG";
-                    return 0;
-                }
             }
             finalSlot = slotSelectionLocal;
             
@@ -195,18 +163,12 @@ for (int selection = 1; selection != 0;)
                 case 4:
                 winningsTotal += 10000;
                 break;
-                
-                default:
-                cout << "WHOA DUDE SOMETHING WENT WRONG";
-                return 0;
             }
         }
         winningsAverage = winningsTotal / amountOfChipsTotal;
         
-        cout << "The total winnings are: $" << fixed << setprecision(2) << winningsTotal << endl;
+        cout << "The total winnings for " << amountOfChips << " chips are: $" << fixed << setprecision(1) << winningsTotal << endl;
         cout << "The average winnings per chip drop is: $" << winningsAverage << endl;
-        //cout << "The total winnings are: $" << winningsTotal << endl;
-        
         
         break;
         default:
