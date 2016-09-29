@@ -105,7 +105,7 @@ for (int selection = 1; selection != 0;)
             }
             
             cout << "]" << endl << endl;
-            cout << "Your winnings are: $" << winningsTotal << endl;
+            cout << "Your winnings are: $" << fixed << setprecision(2) << winningsTotal << endl;
             cout << "Congratulations!" << endl << endl;
             
         break;
@@ -167,7 +167,7 @@ for (int selection = 1; selection != 0;)
         }
         winningsAverage = winningsTotal / amountOfChipsTotal;
         
-        cout << "The total winnings for " << amountOfChips << " chips are: $" << fixed << setprecision(1) << winningsTotal << endl;
+        cout << "The total winnings for " << amountOfChips << " chips are: $" << fixed << setprecision(2) << winningsTotal << endl;
         cout << "The average winnings per chip drop is: $" << winningsAverage << endl;
         
         break;
