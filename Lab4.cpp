@@ -25,16 +25,16 @@ int main()
 {
     //string plinkoRow = "|.........|";
     double slotSelection = 0;
+    double slotSelectionLocal = 0;
     double winningsAverage = 0;
     double amountOfChips = 0;
     double amountOfChipsTotal = 0;
+    double winningsTotal = 0;
     int finalSlot = 0;
-    int winningsTotal = 0;
-    
     int randomZeroOrOne = 0;
     
     //Set random number generation seed
-    srand(time(NULL));
+    srand(time(0));
     
 for (int selection = 1; selection != 0;)
 {
@@ -144,26 +144,30 @@ for (int selection = 1; selection != 0;)
         cin >> slotSelection;
         cout << endl << endl;
         
-        for (; amountOfChips > 0; --amountOfChips)
+        for (int chipsLocal = amountOfChips; chipsLocal > 0; --chipsLocal)
         {
+            slotSelectionLocal = slotSelection;
             
-            
-            for (int i = 0; i < 13; ++i)
+            for (int i = 1; i < 13; ++i)
             {
-                
                 //Determine whether chip moves left or right
                 randomZeroOrOne = rand() % 2;
                 
-                if ((randomZeroOrOne == 0 && slotSelection != 0) || slotSelection == 8)
+                if ((randomZeroOrOne == 0 && slotSelectionLocal != 0) || slotSelectionLocal == 8)
                 {
-                    slotSelection -= .5;
+                    slotSelectionLocal -= .5;
                 }
-                else if (randomZeroOrOne == 1 || slotSelection == 0)
+                else if (randomZeroOrOne == 1 || slotSelectionLocal == 0)
                 {
-                    slotSelection += .5;
+                    slotSelectionLocal += .5;
+                }
+                else
+                {
+                    cout << "WHOAH DUDE SOMETHING WENT WRONG";
+                    return 0;
                 }
             }
-            finalSlot = slotSelection;
+            finalSlot = slotSelectionLocal;
             
             switch(finalSlot)
             {
@@ -191,12 +195,17 @@ for (int selection = 1; selection != 0;)
                 case 4:
                 winningsTotal += 10000;
                 break;
+                
+                default:
+                cout << "WHOA DUDE SOMETHING WENT WRONG";
+                return 0;
             }
         }
         winningsAverage = winningsTotal / amountOfChipsTotal;
         
+        cout << "The total winnings are: $" << fixed << setprecision(2) << winningsTotal << endl;
         cout << "The average winnings per chip drop is: $" << winningsAverage << endl;
-        cout << "The total winnings are: $" << winningsTotal << endl;
+        //cout << "The total winnings are: $" << winningsTotal << endl;
         
         
         break;
