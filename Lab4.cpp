@@ -1,13 +1,13 @@
 /*
 Taylor Bradshaw, Section 005, taylor.bradshaw0250@gmail.com
-Description:
-
-Inputs:
-Outputs:
+Description: This program simulates a plinko board with single and multiple chip drops, outputting the amount you won.
+Inputs: Menu selection, amount of chips to drop, which slot to drop into.
+Outputs: how much money you won, the path of the chip, if you have input an invalid selection.
 
 Test Case One:
-Inputs:
-Outputs:
+Inputs: -1, 1, -1, 1, 1
+Outputs: invalid selection, invalid selection, [1.0 0.5 0.0 0.5 1.0 0.5 1.0 0.5 0.0 0.5 0.0 0.5 0.0 0.5], Your winnings are: $100.00
+Congratulations!
 
 Test Case Two:
 Inputs:
@@ -16,7 +16,6 @@ Outputs:
 Test Case Three:
 Inputs:
 Outputs:
-
 */
 #include <iostream>
 #include <string>
@@ -59,14 +58,15 @@ for (int selection = 1; selection != 0;)
         case 1:
             cout << "Which slot would you like to drop the chip into? (0-8): ";
             cin >> slotSelection;
-            cout << endl << endl;
-            cout << "[";
+            
             if (slotSelection < 0 || slotSelection > 8)
             {
-                cout << endl << "---Invalid Selection. Please select a slot between 0 and 8.---" << endl << endl;
+                cout << endl << "---Invalid Selection. Please select a slot between 0 and 8---" << endl << endl;
             }
             else
             {
+            cout << endl << endl;
+            cout << "[";
             for (int i = 0; i < 13; ++i)
             {
                 cout << fixed << setprecision(1) << slotSelection << " ";
@@ -125,7 +125,7 @@ for (int selection = 1; selection != 0;)
         cin >> amountOfChips;
         if (amountOfChips < 0)
         {
-            cout << endl << "---Invalid Selection. Please select a number larger than 0.---" << endl << endl;
+            cout << endl << "---Invalid Selection. Please select a number larger than 0---" << endl << endl;
         }
         else
         {
@@ -135,7 +135,7 @@ for (int selection = 1; selection != 0;)
             cout << endl << endl;
             if (slotSelection < 0 || slotSelection > 8)
             {
-                cout << endl << "---Invalid Selection. Please select a slot between 0 and 8.---" << endl << endl;
+                cout << endl << "---Invalid Selection. Please select a slot between 0 and 8---" << endl << endl;
             }
             else
             {
@@ -192,9 +192,10 @@ for (int selection = 1; selection != 0;)
                 cout << "The total winnings for " << amountOfChips << " chips are: $" << fixed << setprecision(2) << winningsTotal << endl;
                 cout << "The average winnings per chip drop is: $" << winningsAverage << endl;
             }
+        }
         break;
         default:
-        cout << endl << "---Invalid Selection. Please select a number from the menu.---" << endl << endl;
+        cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
         break;
     }
     
