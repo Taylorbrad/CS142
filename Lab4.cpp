@@ -6,7 +6,7 @@ Outputs: how much money you won, the path of the chip, if you have input an inva
 
 Test Case One:
 Inputs: -1, 1, -1, 1, 1
-Outputs: invalid selection, invalid selection, [1.0 0.5 0.0 0.5 1.0 0.5 1.0 0.5 0.0 0.5 0.0 0.5 0.0 0.5], Your winnings are: $100.00
+Outputs: Invalid selection, Invalid selection, [1.0 1.5 2.0 2.5 3.0 3.5 4.0 3.5 3.0 3.5 3.0 2.5 2.0], Your winnings are: $1000.00
 Congratulations!
 
 Test Case Two:
