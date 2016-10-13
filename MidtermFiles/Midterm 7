@@ -31,6 +31,10 @@ int main()
         isLeapYear = determineIfLeapYear(yearNum);
         isValidDays = determineIfValidDaysInMonth(monthArray, monthDaysArray, monthNum, dayNum, isLeapYear);
         isInputValid = determineIfValidInput(month, dayNum, yearNum, monthNum, isValidDays);
+        if (dayNum == 0 || yearNum == 0)
+        {
+            return 0;
+        }
         
     }
     
