@@ -90,8 +90,6 @@ bool determineIfValidInput(string month, int dayNum, int yearNum, int monthNum, 
 {
     //Returns true if input is valid according to parameters outlined
     const int YEAR_MIN = 1582;
-    const int DAY_MIN = 1;
-    const int DAY_MAX = 31;
     bool isInputValid = false;
     /* cout << month << "/" << dayNum << "/" << yearNum; */
     
