@@ -81,8 +81,9 @@ bool determineIfValidDaysInMonth(string* monthArray, int* monthDaysArray, int mo
     cout << "days are valid";
     else
     cout << "days are invalid";
-    return isValidDays;
     */
+    return isValidDays;
+
     
 }
 bool determineIfValidInput(string month, int dayNum, int yearNum, int monthNum, bool isValidDays)
