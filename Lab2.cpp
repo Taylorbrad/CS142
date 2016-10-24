@@ -5,7 +5,7 @@ using namespace std;
 
 /*
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
-READY TO BE GRADED   wheves2
+READY TO BE GRADED
 Purpose: This is a program which calculates the total bill for a group of people going to a pizza place.
 Inputs: The amount of people eating and the tip percentage.
 Outputs: The area that each person can eat, how many of each type of pizza, and the total bill.
@@ -16,7 +16,6 @@ Test Case Three:
 
 int main()
 {
-	const string sick_meme = "lmao hacktobrefestival";
 	const double SMALL_RADIUS = 6;
 	const double MEDIUM_RADIUS = 8;
 	const double LARGE_RADIUS = 10;
