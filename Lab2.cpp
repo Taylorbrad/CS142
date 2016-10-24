@@ -16,6 +16,7 @@ Test Case Three:
 
 int main()
 {
+	const string sick_meme = "lmao hacktobrefestival";
 	const double SMALL_RADIUS = 6;
 	const double MEDIUM_RADIUS = 8;
 	const double LARGE_RADIUS = 10;
