@@ -22,7 +22,7 @@ int main()
     
     populateArray(plate, plateDuplicate);
     //displayArray(plate, plateDuplicate);
-    while (checkIfStableTemps(plate, plateDuplicate)
+    while (!checkIfStableTemps(plate, plateDuplicate))
     {
         updatePlates(plate, plateDuplicate);
     }
@@ -117,12 +117,12 @@ bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20])
             
             if (!((plate[i][y] - plateDuplicate[i][y]) < LOWEST_ACCEPTABLE_CHANGE))
             {
-                cout << setw(10) << "X";
+                cout << setw(10) << "X:" << plate[i][y] - plateDuplicate[i][y];
                 isTempStable = false;
             }
             else
             {
-                cout << setw(10) << "-";
+                cout << setw(10) << "-:" << plateDuplicate[i][y] - plateDuplicate[i][y];
             }
         }
         cout << endl;
