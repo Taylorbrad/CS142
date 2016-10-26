@@ -39,15 +39,22 @@ void updatePlates(double plate[][20], double plateDuplicate[][20])
             if (IsNotConstantTemperature)
             {
                 plate[i][y] = getAverageOfNeighbors(plate, plateDuplicate, i, y);
-                cout << setw(10) << "X-" << plate[i][y];
+                //cout << setw(10) << "X-" << plate[i][y];
             }
             else
             {
-                cout << setw(10) << "-";
+                //cout << setw(10) << "-";
             }
-            //plateDuplicate[i][y] = plate[i][y];
+            
         }
         cout << endl;
+    }
+    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+    {
+        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+        {
+            plateDuplicate[i][y] = plate[i][y];
+        }
     }
     
 }
