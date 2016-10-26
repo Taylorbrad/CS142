@@ -52,52 +52,37 @@ int main()
 	int randomZeroOrOne = 0;
 	int checkIfFirstIteration = 0;
 	string selectionString = "";
-	
+
 	//Set random number generation seed
 	srand(time(0));
 
-	for (int selection = 1; selection != 9;)
+	for (int selection = 1; selection != 999;)
 	{
 		winningsTotal = 0;
 		selection = 0;
 
 		cout << endl << "Select an option:" << endl;
-		cout << "9: Quit" << endl;
+		cout << "0: Quit" << endl;
 		cout << "1: Drop a single Plinko chip into one slot" << endl;
 		cout << "2: Drop multiple Plinko chips into one slot" << endl;
 		cout << "3: Drop multiple Plinko chips into all slots" << endl;
 		cout << "Selection: ";
-		
-		if (checkIfFirstIteration > 0)
-		{
-		    ++checkIfFirstIteration;
-		    cin.ignore();
-		}
-		
-		getline(cin, selectionString);
-		stringstream convert(selectionString);
-		convert >> selection;
-		
-		if (checkIfFirstIteration > 0)
-		{
-		    ++checkIfFirstIteration;
-		    //cin.ignore();
-		}
-		/*
+
 		cin >> selection;
-		cout << selection;
-		*/
-		
-		//cin >> selection;
+
 		if (cin.fail())
 		{
-				cin.ignore();
-				cin.clear();
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
+
 		}
+		else
 		switch (selection)
 		{
-		case 9:
+		case 0:
 			cout << endl << "...Exiting..." << endl;
+			system("pause");
 			return 0;
 
 			break;
@@ -133,15 +118,10 @@ int main()
 				cout << "Average winnings per chip: $" << fixed << setprecision(2) << winnings / amountOfChips << endl << endl;
 			}
 			break;
-
-		case 0:
-		default:
-			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
-			break;
-
 		}
 
 	}
+	system("pause");
 	return 0;
 }
 
@@ -183,7 +163,6 @@ double dropSingleChip(double slotSelection, int menuOption)
 	int finalSlot = 0;
 	double winningsTotal = 0;
 
-	//slotSelection = getSlotNumber();
 
 	if (menuOption == 1)
 	{
@@ -249,13 +228,16 @@ int getSlotNumber()
 	while (!isInputValid)
 	{
 		cout << "Which slot would you like to drop the chip into? (0-8): ";
-		
-		getline(cin, slotSelectionString);
-		stringstream convert(slotSelectionString);
-		convert >> slotSelection;
 
-		if (slotSelection < 0 || slotSelection > 8)
+		cin >> slotSelection;
+
+		if ((slotSelection < 0 || slotSelection > 8) || cin.fail())
 		{
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(1000, '\n');
+			}
 			cout << endl << "---Invalid Selection. Please select a slot between 0 and 8---" << endl << endl;
 			isInputValid = false;
 		}
@@ -263,11 +245,7 @@ int getSlotNumber()
 		{
 			isInputValid = true;
 		}
-		if (cin.fail())
-		{
-			//cin.clear();
-			//cin.ignore();
-		}
+
 	}
 	return slotSelection;
 }
@@ -277,16 +255,19 @@ int getChipsAmount()
 	bool isInputValid = false;
 	int amountOfChips = 0;
 	string amountOfChipsString = "";
-	
+
 	while (!isInputValid)
 	{
 		cout << "How many chips would you like to drop?" << endl;
-		getline(cin, amountOfChipsString);
-		stringstream convert(amountOfChipsString);
-		convert >> amountOfChips;
+		cin >> amountOfChips;
 
-		if (amountOfChips <= 0)
+		if (amountOfChips <= 0 || cin.fail())
 		{
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(1000, '\n');
+			}
 			cout << endl << "---Invalid Selection. Please select a number larger than 0---" << endl << endl;
 			isInputValid = false;
 		}
@@ -296,8 +277,8 @@ int getChipsAmount()
 		}
 		if (cin.fail())
 		{
-			//cin.clear();
-			//cin.ignore();
+			cin.clear();
+			cin.ignore(1000, '\n');
 		}
 	}
 	return amountOfChips;
