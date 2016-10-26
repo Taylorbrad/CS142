@@ -1,4 +1,5 @@
 /*
+
 Taylor Bradshaw, Section 005, taylor.bradshaw0250@gmail.com
 Description: This program simulates a plinko board with single and multiple chip drops, outputting the amount you won.
 Inputs: Menu selection, amount of chips to drop, which slot to drop into.
@@ -14,8 +15,8 @@ Outputs: Invalid selection, Invalid selection, total winnings: $16200.00, averag
 
 Test Case Three:
 Inputs: Menu option 3, drop -1 chips, drop 6 chips
-Outputs: Invalid selection, 
-winnings/averages for slot 0: $2100/$350 
+Outputs: Invalid selection,
+winnings/averages for slot 0: $2100/$350
 winnings/averages for slot 1: $3100/$516.67
 winnings/averages for slot 2: $3700/$616.67
 winnings/averages for slot 3: $2700/$450
@@ -41,230 +42,241 @@ int getChipsAmount();
 
 int main()
 {
-    double slotSelection = 0;
-    double slotSelectionLocal = 0;
-    double winningsAverage = 0;
-    double amountOfChips = 0;
-    double amountOfChipsTotal = 0;
-    double winningsTotal = 0;
-    int finalSlot = 0;
-    int randomZeroOrOne = 0;
-    
-    //Set random number generation seed
-    srand(time(0));
-    
-for (int selection = 1; selection != 9;)
-{
-    winningsTotal = 0;
-    
-    cout << endl << "Select an option:" << endl;
-    cout << "9: Quit" << endl;
-    cout << "1: Drop a single Plinko chip into one slot" << endl;
-    cout << "2: Drop multiple Plinko chips into one slot" << endl;
-    cout << "3: Drop multiple Plinko chips into all slots" << endl;
-    cout << "Selection: ";
-    cin >> selection;
-    if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore();
-        }
-    switch (selection)
-    {
-        case 9:
-        cout << endl << "...Exiting..." << endl;
-        
-        break;
-        case 1:
-        slotSelection = getSlotNumber();
-        winningsTotal = dropSingleChip(slotSelection, selection);
-            
-        cout << "]" << endl << endl;
-        cout << "Your winnings are: $" << fixed << setprecision(2) << winningsTotal << endl;
-        cout << "Congratulations!" << endl << endl;
-        break;
-        
-        case 2:
-        amountOfChips = getChipsAmount();
-        winningsTotal = dropMultipleChips(amountOfChips, selection, slotSelection);
-        winningsAverage = winningsTotal / amountOfChips;
-        
-        cout << "The total winnings for " << amountOfChips << " chips are: $" << fixed << setprecision(2) << winningsTotal << endl;
-        cout << "The average winnings per chip drop is: $" << winningsAverage << endl;
-        break;
-        
-        case 3:
-        
-        amountOfChips = getChipsAmount();
-        
-        cout << endl;
-        
-        for (int i = 0; i < 9; ++i)
-        {
-            double winnings = 0;
-            winnings = dropMultipleChips(amountOfChips, selection, slotSelection);
-            cout << "Winnings for slot " << i << " is: $ " << winnings << endl;
-            cout << "Average winnings per chip: $" << fixed << setprecision(2) << winnings / amountOfChips << endl << endl;
-        }
-        break;
-        
-        case 0:
-        default:
-        cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
-        break;
-    }
-    
-}
-return 0;
+	double slotSelection = 0;
+	double slotSelectionLocal = 0;
+	double winningsAverage = 0;
+	double amountOfChips = 0;
+	double amountOfChipsTotal = 0;
+	double winningsTotal = 0;
+	int finalSlot = 0;
+	int randomZeroOrOne = 0;
+
+	//Set random number generation seed
+	srand(time(0));
+
+	for (int selection = 1; selection != 9;)
+	{
+		winningsTotal = 0;
+		selection = 0;
+
+		cout << endl << "Select an option:" << endl;
+		cout << "9: Quit" << endl;
+		cout << "1: Drop a single Plinko chip into one slot" << endl;
+		cout << "2: Drop multiple Plinko chips into one slot" << endl;
+		cout << "3: Drop multiple Plinko chips into all slots" << endl;
+		cout << "Selection: ";
+		cin >> selection;
+
+		
+		//cin >> selection;
+		if (cin.fail())
+		{
+			for (int i = 0; i < 3; ++i)
+			{
+				cin.ignore();
+				cin.clear();
+			}
+		}
+		switch (selection)
+		{
+		case 9:
+			cout << endl << "...Exiting..." << endl;
+
+			break;
+		case 1:
+			slotSelection = getSlotNumber();
+			winningsTotal = dropSingleChip(slotSelection, selection);
+
+			cout << endl << endl;
+			cout << "Your winnings are: $" << fixed << setprecision(2) << winningsTotal << endl;
+			cout << "Congratulations!" << endl << endl;
+			break;
+
+		case 2:
+			amountOfChips = getChipsAmount();
+			winningsTotal = dropMultipleChips(amountOfChips, selection, slotSelection);
+			winningsAverage = winningsTotal / amountOfChips;
+
+			cout << "The total winnings for " << amountOfChips << " chips are: $" << fixed << setprecision(2) << winningsTotal << endl;
+			cout << "The average winnings per chip drop is: $" << winningsAverage << endl;
+			break;
+
+		case 3:
+
+			amountOfChips = getChipsAmount();
+
+			cout << endl;
+
+			for (int i = 0; i < 9; ++i)
+			{
+				double winnings = 0;
+				winnings = dropMultipleChips(amountOfChips, selection, i);
+				cout << "Winnings for slot " << i << " is: $ " << winnings << endl;
+				cout << "Average winnings per chip: $" << fixed << setprecision(2) << winnings / amountOfChips << endl << endl;
+			}
+			break;
+
+		case 0:
+		default:
+			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
+			cin.ignore();
+			cin.clear();
+			main();
+			break;
+
+		}
+
+	}
+	return 0;
 }
 
-double computeWinnings(int slot) 
+double computeWinnings(int slot)
 {
-    double winningsTotal = 0;
-    switch(slot)
-    {
-        
-        case 0:
-        case 8:
-        winningsTotal += 100;
-        break;
-        
-        case 1:
-        case 7:
-        winningsTotal+= 500;
-        break;
-        
-        case 2:
-        case 6:
-        winningsTotal += 1000;
-        break;
-        
-        case 3:
-        case 5:
-        winningsTotal += 0;
-        break;
-        
-        case 4:
-        winningsTotal += 10000;
-        break;
-    }
-    return winningsTotal;
+	double winningsTotal = 0;
+	switch (slot)
+	{
+
+	case 0:
+	case 8:
+		winningsTotal += 100;
+		break;
+
+	case 1:
+	case 7:
+		winningsTotal += 500;
+		break;
+
+	case 2:
+	case 6:
+		winningsTotal += 1000;
+		break;
+
+	case 3:
+	case 5:
+		winningsTotal += 0;
+		break;
+
+	case 4:
+		winningsTotal += 10000;
+		break;
+	}
+	return winningsTotal;
 }
 double dropSingleChip(double slotSelection, int menuOption)
 {
-    int randomZeroOrOne = 0;
-    int finalSlot = 0;
-    double winningsTotal = 0;
-    
-    //slotSelection = getSlotNumber();
-    
-    if (menuOption == 1)
-    {
-        cout << endl << endl;
-        cout << "[";
-    }
-    for (int i = 0; i < 12; ++i)
-    {
-        if (menuOption == 1)
-        {
-            cout << fixed << setprecision(1) << slotSelection << " ";
-        }
-        //Determine whether chip moves left or right
-        randomZeroOrOne = rand() % 2;
+	int randomZeroOrOne = 0;
+	int finalSlot = 0;
+	double winningsTotal = 0;
 
-        if ((randomZeroOrOne == 0 && slotSelection != 0) || slotSelection == 8)
-        {
-            slotSelection -= .5;
-        }
-        else if (randomZeroOrOne == 1 || slotSelection == 0)
-        {
-            slotSelection += .5;
-        }
-    }
-    if (menuOption == 1)
-    {
-        cout << slotSelection << "]";
-    }
-    finalSlot = slotSelection;
-    
-    winningsTotal = computeWinnings(finalSlot);
-    
-    return winningsTotal;
+	//slotSelection = getSlotNumber();
+
+	if (menuOption == 1)
+	{
+		cout << endl << endl;
+		cout << "[";
+	}
+	for (int i = 0; i < 12; ++i)
+	{
+		if (menuOption == 1)
+		{
+			cout << fixed << setprecision(1) << slotSelection << " ";
+		}
+		//Determine whether chip moves left or right
+		randomZeroOrOne = rand() % 2;
+
+		if ((randomZeroOrOne == 0 && slotSelection != 0) || slotSelection == 8)
+		{
+			slotSelection -= .5;
+		}
+		else if (randomZeroOrOne == 1 || slotSelection == 0)
+		{
+			slotSelection += .5;
+		}
+	}
+	if (menuOption == 1)
+	{
+		cout << slotSelection << "]";
+	}
+	finalSlot = slotSelection;
+
+	winningsTotal = computeWinnings(finalSlot);
+
+	return winningsTotal;
 }
 
 double dropMultipleChips(double numOfChips, int menuOption, int slot)
 {
-    int slotSelection = 0;
-    double winningsTotal = 0;
-    
-    if (menuOption == 2)
-    {
-        slotSelection = getSlotNumber();
-    }
-    else
-    {
-        slotSelection = slot;
-    }
-    for (; numOfChips > 0; --numOfChips)
-    {
-        winningsTotal += dropSingleChip(slotSelection, menuOption);
-    }
-    
-    return winningsTotal;
+	int slotSelection = 0;
+	double winningsTotal = 0;
+
+	if (menuOption == 2)
+	{
+		slotSelection = getSlotNumber();
+	}
+	else
+	{
+		slotSelection = slot;
+	}
+	for (; numOfChips > 0; --numOfChips)
+	{
+		winningsTotal += dropSingleChip(slotSelection, menuOption);
+	}
+
+	return winningsTotal;
 }
 
 int getSlotNumber()
 {
-    bool isInputValid = false;
-    int slotSelection;
-    
-    while(!isInputValid)
-    {
-        cout << "Which slot would you like to drop the chip into? (0-8): ";
-        cin >> slotSelection;
-        
-        if (slotSelection < 0 || slotSelection > 8)
-        {
-            cout << endl << "---Invalid Selection. Please select a slot between 0 and 8---" << endl << endl;
-            isInputValid = false;
-        }
-        else
-        {
-            isInputValid = true;
-        }
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore();
-        }
-    }
-    return slotSelection;        
+	bool isInputValid = false;
+	int slotSelection;
+
+	while (!isInputValid)
+	{
+		cout << "Which slot would you like to drop the chip into? (0-8): ";
+		cin >> slotSelection;
+
+		if (slotSelection < 0 || slotSelection > 8)
+		{
+			cout << endl << "---Invalid Selection. Please select a slot between 0 and 8---" << endl << endl;
+			isInputValid = false;
+		}
+		else
+		{
+			isInputValid = true;
+		}
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore();
+		}
+	}
+	return slotSelection;
 }
 
 int getChipsAmount()
 {
-    bool isInputValid = false;
-    int amountOfChips = 0;
-    
-    while (!isInputValid)
-    { 
-        cout << "How many chips would you like to drop?" << endl;
-            cin >> amountOfChips;
-            
-            if (amountOfChips < 0)
-            {
-                cout << endl << "---Invalid Selection. Please select a number larger than 0---" << endl << endl;
-                isInputValid = false;
-            }
-            else
-            {
-                isInputValid = true;
-            }
-            if (cin.fail())
-            {
-                cin.clear();
-                cin.ignore();
-            }
-    }
-    return amountOfChips;
+	bool isInputValid = false;
+	int amountOfChips = 0;
+
+	while (!isInputValid)
+	{
+		cout << "How many chips would you like to drop?" << endl;
+		cin >> amountOfChips;
+
+		if (amountOfChips < 0)
+		{
+			cout << endl << "---Invalid Selection. Please select a number larger than 0---" << endl << endl;
+			isInputValid = false;
+		}
+		else
+		{
+			isInputValid = true;
+		}
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore();
+		}
+	}
+	return amountOfChips;
 }
