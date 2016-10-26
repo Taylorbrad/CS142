@@ -9,7 +9,7 @@ const int LOWEST_SUBSCRIPT = 0;
 const int HIGHEST_SUBSCRIPT = 20;
 
 void populateArray(double plate[][20], double plateDuplicate[][20]);
-void displayArray(double plate[][20], double plateDuplicate[][20]);
+void displayArray(double array[][20]);
 void updatePlates(double plate[][20], double plateDuplicate[][20]);
 double getAverageOfNeighbors(double plate[][20], double plateDuplicate[][20], int i, int y);
 bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20]);
@@ -22,16 +22,9 @@ int main()
     
     populateArray(plate, plateDuplicate);
     //displayArray(plate, plateDuplicate);
-    
-    for (int i = 0; i < 20; ++i)
-    {
-        //cout << endl;
-    }
-    while (!checkIfStableTemps)
-    {
-        updatePlates(plate, plateDuplicate);
-    }
-    displayArray(plate, plateDuplicate);
+
+    updatePlates(plate, plateDuplicate);
+    displayArray(plate);
     
 }
 void updatePlates(double plate[][20], double plateDuplicate[][20])
@@ -46,11 +39,17 @@ void updatePlates(double plate[][20], double plateDuplicate[][20])
             if (IsNotConstantTemperature)
             {
                 plate[i][y] = getAverageOfNeighbors(plate, plateDuplicate, i, y);
+                cout << setw(10) << "X-" << plate[i][y];
             }
-            
-            plateDuplicate[i][y] = plate[i][y];
+            else
+            {
+                cout << setw(10) << "-";
+            }
+            //plateDuplicate[i][y] = plate[i][y];
         }
+        cout << endl;
     }
+    
 }
 double getAverageOfNeighbors(double plate[][20], double plateDuplicate[][20], int i, int y)
 {
@@ -85,13 +84,13 @@ void populateArray(double plate[][20], double plateDuplicate[][20])
         //cout << endl;
     }
 }
-void displayArray(double plate[][20], double plateDuplicate[][20])
+void displayArray(double array[][20])
 {
     for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
     {
         for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
         {
-            cout << setw(10) << fixed << setprecision(4)  << plate[i][y];
+            cout << setw(10) << fixed << setprecision(4)  << array[i][y];
         }
         cout << endl;
     }
