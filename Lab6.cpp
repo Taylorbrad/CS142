@@ -12,6 +12,7 @@ void populateArray(double plate[][20], double plateDuplicate[][20]);
 void displayArray(double plate[][20], double plateDuplicate[][20]);
 void updatePlates(double plate[][20], double plateDuplicate[][20]);
 double getAverageOfNeighbors(double plate[][20], double plateDuplicate[][20], int i, int y);
+bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20]);
 
 int main()
 {
@@ -26,8 +27,10 @@ int main()
     {
         //cout << endl;
     }
-    
-    updatePlates(plate, plateDuplicate);
+    while (!checkIfStableTemps)
+    {
+        updatePlates(plate, plateDuplicate);
+    }
     displayArray(plate, plateDuplicate);
     
 }
@@ -44,6 +47,8 @@ void updatePlates(double plate[][20], double plateDuplicate[][20])
             {
                 plate[i][y] = getAverageOfNeighbors(plate, plateDuplicate, i, y);
             }
+            
+            plateDuplicate[i][y] = plate[i][y];
         }
     }
 }
@@ -86,8 +91,27 @@ void displayArray(double plate[][20], double plateDuplicate[][20])
     {
         for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
         {
-            cout << setw(10) << fixed << setprecision(4) << ">[" << i << "," << y << "]" << plate[i][y];
+            cout << setw(10) << fixed << setprecision(4)  << plate[i][y];
         }
         cout << endl;
     }
+}
+bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20])
+{
+    const double LOWEST_ACCEPTABLE_CHANGE = .1;
+    bool isTempStable = true;
+    
+    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+    {
+        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+        {
+            //bool isTempChangeSmallEnough = ((plate[i][y] - plateDuplicate[i][y]) < LOWEST_ACCEPTABLE_CHANGE);
+            
+            if (!((plate[i][y] - plateDuplicate[i][y]) < LOWEST_ACCEPTABLE_CHANGE))
+            {
+                isTempStable = false;
+            }
+        }
+    }
+    return isTempStable;
 }
