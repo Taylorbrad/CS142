@@ -16,129 +16,131 @@ bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20], double 
 
 int main()
 {
-    
-    double plate[20][20];
-    double plateOld[20][20];
-    double plateDuplicate[20][20];
-    bool check = false;
-    
-    populateArray(plate, plateDuplicate);
-    //displayArray(plate, plateDuplicate);
-    updatePlates(plate, plateDuplicate, plateOld);
-    check = checkIfStableTemps(plate, plateDuplicate, plateOld);
-    while (!check)
-    {
-        check = checkIfStableTemps(plate, plateDuplicate, plateOld);
-        updatePlates(plate, plateDuplicate, plateOld);
-    }
-    displayArray(plate);
-    
+
+	double plate[20][20];
+	double plateOld[20][20];
+	double plateDuplicate[20][20];
+	bool check = false;
+
+	populateArray(plate, plateDuplicate);
+	//displayArray(plate);
+	//updatePlates(plate, plateDuplicate, plateOld);
+	//displayArray(plate);
+	check = checkIfStableTemps(plate, plateDuplicate, plateOld);
+	while (!check)
+	{
+		check = checkIfStableTemps(plate, plateDuplicate, plateOld);
+		updatePlates(plate, plateDuplicate, plateOld);
+		//displayArray(plate);
+	}
+	displayArray(plate);
+	system("pause");
 }
 void updatePlates(double plate[][20], double plateDuplicate[][20], double plateOld[][20])
 {
-    
-    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
-    {
-        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
-        {
-            plateOld[i][y] = plate[i][y];
-        }
-    }
-    
-    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
-    {
-        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
-        {
-            bool IsNotConstantTemperature = !((y == LOWEST_SUBSCRIPT || y == HIGHEST_SUBSCRIPT - 1) || ((y < HIGHEST_SUBSCRIPT - 1 && y > LOWEST_SUBSCRIPT) && (i == HIGHEST_SUBSCRIPT - 1 || i == LOWEST_SUBSCRIPT)));
-            
-            if (IsNotConstantTemperature)
-            {
-                plate[i][y] = getAverageOfNeighbors(plate, plateDuplicate, i, y);
-                //cout << setw(10) << "X-" << plate[i][y];
-            }
-            else
-            {
-                //cout << setw(10) << "-";
-            }
-            
-        }
-        //cout << endl;
-    }
-    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
-    {
-        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
-        {
-            plateDuplicate[i][y] = plate[i][y];
-        }
-    }
-    
+
+	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	{
+		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		{
+			plateOld[i][y] = plate[i][y];
+		}
+	}
+
+	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	{
+		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		{
+			bool IsNotConstantTemperature = !((y == LOWEST_SUBSCRIPT || y == HIGHEST_SUBSCRIPT - 1) || ((y < HIGHEST_SUBSCRIPT - 1 && y > LOWEST_SUBSCRIPT) && (i == HIGHEST_SUBSCRIPT - 1 || i == LOWEST_SUBSCRIPT)));
+
+			if (IsNotConstantTemperature)
+			{
+				plate[i][y] = getAverageOfNeighbors(plate, plateDuplicate, i, y);
+				//cout << setw(10) << "X-" << plate[i][y];
+			}
+			else
+			{
+				//cout << setw(10) << "-";
+			}
+
+		}
+		//cout << endl;
+	}
+	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	{
+		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		{
+			plateDuplicate[i][y] = plate[i][y];
+		}
+	}
+
 }
 double getAverageOfNeighbors(double plate[][20], double plateDuplicate[][20], int i, int y)
 {
-    double average = 0;
-    
-    average = (plateDuplicate[i - 1][y] + plateDuplicate[i + 1][y] + plateDuplicate[i][y - 1] + plateDuplicate[i][y + 1]) / 4;
-    return average;
+	double average = 0;
+
+	average = (plateDuplicate[i - 1][y] + plateDuplicate[i + 1][y] + plateDuplicate[i][y - 1] + plateDuplicate[i][y + 1]) / 4;
+	return average;
 }
 void populateArray(double plate[][20], double plateDuplicate[][20])
 {
-    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
-    {
-        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
-        {
-            if (y == LOWEST_SUBSCRIPT || y == HIGHEST_SUBSCRIPT - 1)
-            {
-                plateDuplicate[i][y] = 0;
-                plate[i][y] = 0;
-            }
-            else if ((y < HIGHEST_SUBSCRIPT - 1 && y > LOWEST_SUBSCRIPT) && (i == HIGHEST_SUBSCRIPT - 1 || i == LOWEST_SUBSCRIPT))
-            {
-                plateDuplicate[i][y] = 100;
-                plate[i][y] = 100;
-            }
-            else
-            {
-                plateDuplicate[i][y] = 0;
-                plate[i][y] = 0;
-            }
-            //cout << setw(10) << fixed << setprecision(4) << ">[" << i << "," << y << "]" << plate[i][y];
-        }
-        //cout << endl;
-    }
+	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	{
+		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		{
+			if (y == LOWEST_SUBSCRIPT || y == HIGHEST_SUBSCRIPT - 1)
+			{
+				plateDuplicate[i][y] = 0;
+				plate[i][y] = 0;
+			}
+			else if ((y < HIGHEST_SUBSCRIPT - 1 && y > LOWEST_SUBSCRIPT) && (i == HIGHEST_SUBSCRIPT - 1 || i == LOWEST_SUBSCRIPT))
+			{
+				plateDuplicate[i][y] = 100;
+				plate[i][y] = 100;
+			}
+			else
+			{
+				plateDuplicate[i][y] = 0;
+				plate[i][y] = 0;
+			}
+			//cout << setw(10) << fixed << setprecision(4) << ">[" << i << "," << y << "]" << plate[i][y];
+		}
+		//cout << endl;
+	}
 }
 void displayArray(double array[][20])
 {
-    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
-    {
-        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
-        {
-            cout << setw(10) << fixed << setprecision(4)  << array[i][y];
-        }
-        cout << endl;
-    }
+	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	{
+		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		{
+			cout << setw(10) << fixed << setprecision(4) << array[i][y];
+		}
+		cout << endl;
+	}
 }
 bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20], double plateOld[][20])
 {
-    const double LOWEST_ACCEPTABLE_CHANGE = .1;
-    bool isTempStable = true;
-    
-    for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
-    {
-        for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
-        {
-            //bool isTempChangeSmallEnough = ((plate[i][y] - plateDuplicate[i][y]) < LOWEST_ACCEPTABLE_CHANGE);
-            
-            if (!((plate[i][y] - plateOld[i][y]) < LOWEST_ACCEPTABLE_CHANGE))
-            {
-                //cout << setw(10) << "X:" << plate[i][y] - plateDuplicate[i][y];
-                isTempStable = false;
-            }
-            else
-            {
-                //cout << setw(10) << "-:" << plateDuplicate[i][y] - plateDuplicate[i][y];
-            }
-        }
-        //cout << endl;
-    }
-    return isTempStable;
+	const double LOWEST_ACCEPTABLE_CHANGE = .1;
+	bool isTempStable = true;
+
+	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	{
+		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		{
+			//bool isTempChangeSmallEnough = ((plate[i][y] - plateDuplicate[i][y]) < LOWEST_ACCEPTABLE_CHANGE);
+
+			if (!((plate[i][y] - plateOld[i][y]) < LOWEST_ACCEPTABLE_CHANGE))
+			{
+				//cout << setw(10) << "X:" << plate[i][y] - plateOld[i][y];
+				isTempStable = false;
+			}
+			else
+			{
+				//cout << setw(10) << "-:" << plateDuplicate[i][y] - plateOld[i][y];
+			}
+		}
+		//cout << endl;
+	}
+	return isTempStable;
 }
