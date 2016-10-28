@@ -2,145 +2,158 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
 const int LOWEST_SUBSCRIPT = 0;
-const int HIGHEST_SUBSCRIPT = 20;
+const int TABLE_DIMENSION = 20;
 
-void populateArray(double plate[][20], double plateDuplicate[][20]);
-void displayArray(double array[][20]);
-void updatePlates(double plate[][20], double plateDuplicate[][20], double plateOld[][20]);
-double getAverageOfNeighbors(double plate[][20], double plateDuplicate[][20], int i, int y);
-bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20], double plateOld[][20]);
+void populateArray(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION]);
+void displayArray(double array[][TABLE_DIMENSION]);
+void exportArrayToTable(double plate[][TABLE_DIMENSION]);
+void updatePlates(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION], double plateOld[][TABLE_DIMENSION]);
+double getAverageOfNeighbors(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION], int i, int y);
+bool checkIfStableTemps(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION], double plateOld[][TABLE_DIMENSION]);
 
 int main()
 {
 
-	double plate[20][20];
-	double plateOld[20][20];
-	double plateDuplicate[20][20];
+	double plate[TABLE_DIMENSION][TABLE_DIMENSION];
+	double plateOld[TABLE_DIMENSION][TABLE_DIMENSION];
+	double plateDuplicate[TABLE_DIMENSION][TABLE_DIMENSION];
 	bool check = false;
 
 	populateArray(plate, plateDuplicate);
-	//displayArray(plate);
-	//updatePlates(plate, plateDuplicate, plateOld);
-	//displayArray(plate);
 	check = checkIfStableTemps(plate, plateDuplicate, plateOld);
+
 	while (!check)
 	{
 		check = checkIfStableTemps(plate, plateDuplicate, plateOld);
 		updatePlates(plate, plateDuplicate, plateOld);
-		//displayArray(plate);
 	}
 	displayArray(plate);
+	exportArrayToTable(plate);
 	system("pause");
 }
-void updatePlates(double plate[][20], double plateDuplicate[][20], double plateOld[][20])
+void updatePlates(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION], double plateOld[][TABLE_DIMENSION])
 {
 
-	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 	{
-		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
 			plateOld[i][y] = plate[i][y];
 		}
 	}
 
-	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 	{
-		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
-			bool IsNotConstantTemperature = !((y == LOWEST_SUBSCRIPT || y == HIGHEST_SUBSCRIPT - 1) || ((y < HIGHEST_SUBSCRIPT - 1 && y > LOWEST_SUBSCRIPT) && (i == HIGHEST_SUBSCRIPT - 1 || i == LOWEST_SUBSCRIPT)));
+			bool IsNotConstantTemperature = !((y == LOWEST_SUBSCRIPT || y == TABLE_DIMENSION - 1) || ((y < TABLE_DIMENSION - 1 && y > LOWEST_SUBSCRIPT) && (i == TABLE_DIMENSION - 1 || i == LOWEST_SUBSCRIPT)));
 
 			if (IsNotConstantTemperature)
 			{
 				plate[i][y] = getAverageOfNeighbors(plate, plateDuplicate, i, y);
-				//cout << setw(10) << "X-" << plate[i][y];
 			}
-			else
-			{
-				//cout << setw(10) << "-";
-			}
-
 		}
-		//cout << endl;
 	}
-	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 	{
-		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
 			plateDuplicate[i][y] = plate[i][y];
 		}
 	}
 
 }
-double getAverageOfNeighbors(double plate[][20], double plateDuplicate[][20], int i, int y)
+double getAverageOfNeighbors(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION], int i, int y)
 {
 	double average = 0;
 
 	average = (plateDuplicate[i - 1][y] + plateDuplicate[i + 1][y] + plateDuplicate[i][y - 1] + plateDuplicate[i][y + 1]) / 4;
 	return average;
 }
-void populateArray(double plate[][20], double plateDuplicate[][20])
+void populateArray(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION])
 {
-	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	const double HOT_PART_TEMP = 100;
+	const double COLD_PART_TEMP = 0;
+
+	for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 	{
-		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
-			if (y == LOWEST_SUBSCRIPT || y == HIGHEST_SUBSCRIPT - 1)
+			if (y == LOWEST_SUBSCRIPT || y == TABLE_DIMENSION - 1)
 			{
-				plateDuplicate[i][y] = 0;
-				plate[i][y] = 0;
+				plateDuplicate[i][y] = COLD_PART_TEMP;
+				plate[i][y] = COLD_PART_TEMP;
 			}
-			else if ((y < HIGHEST_SUBSCRIPT - 1 && y > LOWEST_SUBSCRIPT) && (i == HIGHEST_SUBSCRIPT - 1 || i == LOWEST_SUBSCRIPT))
+			else if ((y < TABLE_DIMENSION - 1 && y > LOWEST_SUBSCRIPT) && (i == TABLE_DIMENSION - 1 || i == LOWEST_SUBSCRIPT))
 			{
-				plateDuplicate[i][y] = 100;
-				plate[i][y] = 100;
+				plateDuplicate[i][y] = HOT_PART_TEMP;
+				plate[i][y] = HOT_PART_TEMP;
 			}
 			else
 			{
-				plateDuplicate[i][y] = 0;
-				plate[i][y] = 0;
+				plateDuplicate[i][y] = COLD_PART_TEMP;
+				plate[i][y] = COLD_PART_TEMP;
 			}
-			//cout << setw(10) << fixed << setprecision(4) << ">[" << i << "," << y << "]" << plate[i][y];
 		}
-		//cout << endl;
 	}
 }
-void displayArray(double array[][20])
+void displayArray(double array[][TABLE_DIMENSION])
 {
-	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 	{
-		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
 			cout << setw(10) << fixed << setprecision(4) << array[i][y];
 		}
 		cout << endl;
 	}
 }
-bool checkIfStableTemps(double plate[][20], double plateDuplicate[][20], double plateOld[][20])
+void exportArrayToTable(double array[][TABLE_DIMENSION])
 {
-	const double LOWEST_ACCEPTABLE_CHANGE = .1;
+	ofstream outFile;
+	outFile.open("HotPlate.csv", ios::trunc);
+
+	if (outFile.is_open())
+	{
+		for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
+		{
+			for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
+			{
+				outFile << fixed << setprecision(4) << array[i][y];
+				if (y < 19)
+				{
+					outFile << ",";
+				}
+			}
+			outFile << endl;
+		}
+	}
+	else
+	{
+		cout << "There was an issue creating/opening the file.";
+	}
+}
+bool checkIfStableTemps(double plate[][TABLE_DIMENSION], double plateDuplicate[][TABLE_DIMENSION], double plateOld[][TABLE_DIMENSION])
+{
+	const double LOWEST_ACCEPTABLE_CHANGE = .101;
 	bool isTempStable = true;
 
-	for (int i = LOWEST_SUBSCRIPT; i < HIGHEST_SUBSCRIPT; ++i)
+	for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 	{
-		for (int y = LOWEST_SUBSCRIPT; y < HIGHEST_SUBSCRIPT; ++y)
+		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
-			//bool isTempChangeSmallEnough = ((plate[i][y] - plateDuplicate[i][y]) < LOWEST_ACCEPTABLE_CHANGE);
-
-			if (!((plate[i][y] - plateOld[i][y]) < LOWEST_ACCEPTABLE_CHANGE))
+			double difference = (plate[i][y] - plateOld[i][y]);
+			
+			if (!(difference < LOWEST_ACCEPTABLE_CHANGE))
 			{
-				//cout << setw(10) << "X:" << plate[i][y] - plateOld[i][y];
 				isTempStable = false;
 			}
-			else
-			{
-				//cout << setw(10) << "-:" << plateDuplicate[i][y] - plateOld[i][y];
-			}
 		}
-		//cout << endl;
 	}
 	return isTempStable;
 }
