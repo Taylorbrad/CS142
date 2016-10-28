@@ -25,6 +25,15 @@ int main()
 	bool check = false;
 
 	populateArray(plate, plateDuplicate);
+
+	cout << endl << "Printing Initial Plate:" << endl << endl;
+
+	displayArray(plate);
+	updatePlates(plate, plateDuplicate, plateOld);
+
+	cout << endl << "Printing Plate After First Iteration:" << endl << endl;
+
+	displayArray(plate);
 	check = checkIfStableTemps(plate, plateDuplicate, plateOld);
 
 	while (!check)
@@ -32,6 +41,7 @@ int main()
 		check = checkIfStableTemps(plate, plateDuplicate, plateOld);
 		updatePlates(plate, plateDuplicate, plateOld);
 	}
+	cout << endl << "Printing Final Plate:" << endl << endl;
 	displayArray(plate);
 	exportArrayToTable(plate);
 	system("pause");
@@ -120,6 +130,7 @@ void exportArrayToTable(double array[][TABLE_DIMENSION])
 
 	if (outFile.is_open())
 	{
+		cout << endl << "...Writing Information to File..." << endl << endl;
 		for (int i = LOWEST_SUBSCRIPT; i < TABLE_DIMENSION; ++i)
 		{
 			for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
@@ -148,7 +159,7 @@ bool checkIfStableTemps(double plate[][TABLE_DIMENSION], double plateDuplicate[]
 		for (int y = LOWEST_SUBSCRIPT; y < TABLE_DIMENSION; ++y)
 		{
 			double difference = (plate[i][y] - plateOld[i][y]);
-			
+
 			if (!(difference < LOWEST_ACCEPTABLE_CHANGE))
 			{
 				isTempStable = false;
@@ -156,4 +167,4 @@ bool checkIfStableTemps(double plate[][TABLE_DIMENSION], double plateDuplicate[]
 		}
 	}
 	return isTempStable;
-}
+
