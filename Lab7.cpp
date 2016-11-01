@@ -75,3 +75,11 @@ void addRestaurant(vector<string>& restaurants)
     
     restaurants.push_back(newRestaurant);
 }
+void removeRestaurant(vector<string>& restaurants)
+{
+    
+}
+void shuffleVector()
+{
+    
+}
