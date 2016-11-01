@@ -14,17 +14,18 @@ int main()
     vector<string> restaurants;
     
     int selection = 0;
-    
-    cout << endl << "1 - Display all restaurants";
-    cout << endl << "2 - Add a restaurant";
-    cout << endl << "3 - Remove a restaurant";
-    cout << endl << "4 - Shuffle the vector";
-    cout << endl << "5 - Begin the tournament";
-    cout << endl << "6 - Quit the program";
-    cin >> selection;
-    
-    menuSelection(selection, restaurants);
-    
+    while (1 == 1)
+    {
+        cout << endl << "1 - Display all restaurants";
+        cout << endl << "2 - Add a restaurant";
+        cout << endl << "3 - Remove a restaurant";
+        cout << endl << "4 - Shuffle the vector";
+        cout << endl << "5 - Begin the tournament";
+        cout << endl << "6 - Quit the program";
+        cin >> selection;
+        
+        menuSelection(selection, restaurants);
+    }
     
 }
 void menuSelection(int selection, vector<string>& restaurants)
