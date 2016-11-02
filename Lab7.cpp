@@ -15,7 +15,7 @@ int main()
     vector<string> restaurants;
     
     int selection = 0;
-    while (1 == 1)
+    while (selection != 6)
     {
         cout << endl << "1 - Display all restaurants";
         cout << endl << "2 - Add a restaurant";
@@ -75,7 +75,15 @@ void addRestaurant(vector<string>& restaurants)
     cout << "Restaurant name: ";
     cin >> newRestaurant;
     
-    restaurants.push_back(newRestaurant);
+    if (find(restaurants.begin(), restaurants.end(), newRestaurant) != restaurants.end())
+    {
+        cout << "Restaurant already exists.";
+    }
+    else
+    {
+        restaurants.push_back(newRestaurant);
+        cout << "'" << newRestaurant << "' added to restaurants." << endl;
+    }
 }
 void removeRestaurant(vector<string>& restaurants)
 {
@@ -88,6 +96,8 @@ void removeRestaurant(vector<string>& restaurants)
     {
         //Erase the "removed" elements.
         restaurants.erase(find(restaurants.begin(), restaurants.end(), toFind));
+        cout << "'" << newRestaurant << "' removed from restaurants." << endl;
+    }
     }
     else
     {
