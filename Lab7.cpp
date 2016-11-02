@@ -30,7 +30,7 @@ int main()
 		{
 			cin.clear();
 			cin.ignore(1000, '\n');
-			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
+			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl;
 
 		}
 		else
@@ -90,7 +90,7 @@ void addRestaurant(vector<string>& restaurants)
     
     if (find(restaurants.begin(), restaurants.end(), newRestaurant) != restaurants.end())
     {
-        cout << "Restaurant already exists.";
+        cout << "'" << newRestaurant <<"' already exists.";
     }
     else
     {
@@ -115,7 +115,7 @@ void removeRestaurant(vector<string>& restaurants)
     }
     else
     {
-        cout << "Restaurant not found.";
+        cout << "'" << toFind << "' not found" << endl;
     }
 }
 void shuffleVector()
