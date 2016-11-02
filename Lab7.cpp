@@ -73,7 +73,9 @@ void addRestaurant(vector<string>& restaurants)
     string newRestaurant;
     
     cout << "Restaurant name: ";
-    cin >> newRestaurant;
+    cin.ignore();
+    getline(cin, newRestaurant);
+    //cin >> newRestaurant;
     
     if (find(restaurants.begin(), restaurants.end(), newRestaurant) != restaurants.end())
     {
@@ -96,7 +98,7 @@ void removeRestaurant(vector<string>& restaurants)
     {
         //Erase the "removed" elements.
         restaurants.erase(find(restaurants.begin(), restaurants.end(), toFind));
-        cout << "'" << newRestaurant << "' removed from restaurants." << endl;
+        cout << "'" << toFind << "' removed from restaurants." << endl;
     }
     }
     else
