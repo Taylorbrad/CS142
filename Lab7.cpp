@@ -19,6 +19,15 @@ int main()
     int selection = 0;
     srand(time(0));
     
+    restaurants.push_back("McDonald's");
+    restaurants.push_back("Little Caesar's");
+    restaurants.push_back("Arby's");
+    restaurants.push_back("Pizza Hut");
+    restaurants.push_back("Sonic");
+    restaurants.push_back("Winger's");
+    restaurants.push_back("Panda Express");
+    restaurants.push_back("In-N-Out Burger");
+    
     while (selection != 6)
     {
         cout << endl << "1 - Display all restaurants";
