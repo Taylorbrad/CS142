@@ -26,7 +26,18 @@ int main()
         cout << endl << "Input: ";
         cin >> selection;
         
-        menuSelection(selection, restaurants);
+        if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl << endl;
+
+		}
+		else
+		{
+		    menuSelection(selection, restaurants);
+		}
+        
     }
     
 }
