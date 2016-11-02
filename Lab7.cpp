@@ -3,18 +3,22 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cmath>
+#include <ctime>
 using namespace std;
 
 void menuSelection(int selection, vector<string>& restaurants);
 void displayRestaurants(const vector<string> restaurants);
 void addRestaurant(vector<string>& restaurants);
 void removeRestaurant(vector<string>& restaurants);
+void shuffleVector(vector<string>& restaurants);
 
 int main()
 {
     vector<string> restaurants;
-    
     int selection = 0;
+    srand(time(0));
+    
     while (selection != 6)
     {
         cout << endl << "1 - Display all restaurants";
@@ -55,7 +59,7 @@ void menuSelection(int selection, vector<string>& restaurants)
     removeRestaurant(restaurants);
     break;
     case 4:
-    
+    shuffleVector(restaurants);
     break;
     case 5:
     
@@ -118,7 +122,20 @@ void removeRestaurant(vector<string>& restaurants)
         cout << "'" << toFind << "' not found" << endl;
     }
 }
-void shuffleVector()
+void shuffleVector(vector<string>& restaurants)
 {
+    int randomSubscriptOne = 0;
+    int randomSubscriptTwo = 0;
+    string tempString = "";
     
+    for (int i = 0; i < 100; ++i)
+    {
+        randomSubscriptOne = rand() % restaurants.size();
+        randomSubscriptTwo = rand() % restaurants.size();
+        
+        tempString = restaurants[randomSubscriptOne];
+        restaurants[randomSubscriptOne] = restaurants[randomSubscriptTwo];
+        restaurants[randomSubscriptTwo] = tempString;
+    }
+    cout << endl << "List has been shuffled!";
 }
