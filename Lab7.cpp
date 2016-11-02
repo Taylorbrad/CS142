@@ -28,7 +28,7 @@ int main()
     restaurants.push_back("Panda Express");
     restaurants.push_back("In-N-Out Burger");
     
-    while (selection != 6)
+    while (selection < 5)
     {
         cout << endl << "1 - Display all restaurants";
         cout << endl << "2 - Add a restaurant";
