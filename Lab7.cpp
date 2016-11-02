@@ -2,12 +2,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <algorithm>
 using namespace std;
 
 void menuSelection(int selection, vector<string>& restaurants);
 void displayRestaurants(const vector<string> restaurants);
 void addRestaurant(vector<string>& restaurants);
+void removeRestaurant(vector<string>& restaurants);
 
 int main()
 {
@@ -22,6 +23,7 @@ int main()
         cout << endl << "4 - Shuffle the vector";
         cout << endl << "5 - Begin the tournament";
         cout << endl << "6 - Quit the program";
+        cout << endl << "Input: ";
         cin >> selection;
         
         menuSelection(selection, restaurants);
@@ -39,7 +41,7 @@ void menuSelection(int selection, vector<string>& restaurants)
     addRestaurant(restaurants);
     break;
     case 3:
-    
+    removeRestaurant(restaurants);
     break;
     case 4:
     
@@ -77,7 +79,20 @@ void addRestaurant(vector<string>& restaurants)
 }
 void removeRestaurant(vector<string>& restaurants)
 {
+    string toFind = "";
     
+    cout << "Which restaurant would you like to remove? :";
+    cin >> toFind;
+    
+    if (find(restaurants.begin(), restaurants.end(), toFind) != restaurants.end())
+    {
+        //Erase the "removed" elements.
+        restaurants.erase(find(restaurants.begin(), restaurants.end(), toFind));
+    }
+    else
+    {
+        cout << "Restaurant not found.";
+    }
 }
 void shuffleVector()
 {
