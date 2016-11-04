@@ -20,14 +20,14 @@ int main()
     int selection = 0;
     srand(time(0));
     
-    restaurants.push_back("A");
-    restaurants.push_back("B");
-    restaurants.push_back("C");
-    restaurants.push_back("D");
-    restaurants.push_back("E");
-    restaurants.push_back("F");
-    restaurants.push_back("G");
-    restaurants.push_back("H");
+    restaurants.push_back("McDonald's");
+    restaurants.push_back("Little Caesar's");
+    restaurants.push_back("Arby's");
+    restaurants.push_back("Pizza Hut");
+    restaurants.push_back("Sonic");
+    restaurants.push_back("Winger's");
+    restaurants.push_back("Panda Express");
+    restaurants.push_back("In-N-Out Burger");
     
     while (selection < 5)
     {
@@ -153,42 +153,69 @@ void tournament(vector<string>& restaurants)
 {
     int selection = 0;
     int halfOfTheRestaurants = restaurants.size() / 2;
+    int size = restaurants.size();
+    bool isPower = false;
     
-    //for (
-    for (int i = 1; restaurants.size() > 1; ++i)
+    isPower = checkIfIsPower(size);
+    
+    if (isPower)
     {
-        cout << "#1: " << restaurants[i - 1] << endl;
-        cout << "#2: " << restaurants[i] << endl;
-        cout << "Which restaurant do you prefer? (1 or 2): ";
-        cin >> selection;
-        
-        if (cin.fail() || selection < 1 || selection > 2)
-		{
-		    if (cin.fail())
-			{
-        	    cin.clear();
-    	        cin.ignore(1000, '\n');
-		    }
-			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl;
-			--i;
-		}
-		else
-		{
-		    switch (selection)
-		    {
-		        case 1:
-		            removeRestaurant(restaurants, restaurants[i]);
-		        break;
-		        case 2:
-		            removeRestaurant(restaurants, restaurants[i - 1]);
-		        break;
-		    }
-		}
-		if (restaurants.size() == halfOfTheRestaurants)
-		{
-		    i = 0;
-		    halfOfTheRestaurants = restaurants.size() / 2;
-		}
+        for (int i = 1; size > 1; ++i)
+        {
+            cout << i;
+            //cout << "#1: " << restaurants[i - 1] << endl;
+            //cout << "#2: " << restaurants[i] << endl;
+            cout << "Which restaurant do you prefer? (1 or 2): ";
+            cin >> selection;
+            cout << "nofail";
+            //selection = 1;
+            if (cin.fail() || selection < 1 || selection > 3)
+    		{
+    		    if (cin.fail())
+    			{
+            	    cin.clear();
+        	        cin.ignore(1000, '\n');
+    		    }
+    			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl;
+    			--i;
+    		}
+    		else
+    		{
+    		    switch (selection)
+    		    {
+    		        case 1:
+    		            removeRestaurant(restaurants, restaurants[i]);
+    		            --size;
+    		            
+    		        break;
+    		        case 2:
+    		            removeRestaurant(restaurants, restaurants[i - 1]);
+    		            --size;
+    		        break;
+    		    }
+    		}
+    		if (size == halfOfTheRestaurants)
+    		{
+    		    i = 0;
+    		    halfOfTheRestaurants = restaurants.size() / 2;
+    		}
+        }
+        cout << restaurants[0] << " is the winner!!" << endl;
     }
-    cout << restaurants[1] << " is the winner!!" << endl;
+    else
+    {
+        cout << "Incorrect amount of opponents!" << endl;
+    }
+}
+bool checkIfIsPower(int numberToCheck)
+{
+    bool isPower;
+    for (int power = 1; power < 100; ++power)
+    {
+        if (numberToCheck == pow(2, power)
+        {
+            bool isPower = true;
+        }
+    }
+    return isPower;
 }
