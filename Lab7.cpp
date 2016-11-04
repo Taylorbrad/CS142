@@ -10,7 +10,7 @@ using namespace std;
 void menuSelection(int selection, vector<string>& restaurants);
 void displayRestaurants(const vector<string> restaurants);
 void addRestaurant(vector<string>& restaurants);
-void removeRestaurant(vector<string>& restaurants);
+void removeRestaurant(vector<string>& restaurants, string toFind);
 void shuffleVector(vector<string>& restaurants);
 
 int main()
@@ -56,6 +56,8 @@ int main()
 }
 void menuSelection(int selection, vector<string>& restaurants)
 {
+    string toFind = "";
+    
     switch(selection)
     {
     case 1:
@@ -65,7 +67,12 @@ void menuSelection(int selection, vector<string>& restaurants)
     addRestaurant(restaurants);
     break;
     case 3:
-    removeRestaurant(restaurants);
+    
+    cout << "Which restaurant would you like to remove? :";
+    cin.ignore();
+    getline(cin, toFind);
+    
+    removeRestaurant(restaurants, toFind);
     break;
     case 4:
     shuffleVector(restaurants);
@@ -111,15 +118,8 @@ void addRestaurant(vector<string>& restaurants)
         cout << "'" << newRestaurant << "' added to restaurants." << endl;
     }
 }
-void removeRestaurant(vector<string>& restaurants)
+void removeRestaurant(vector<string>& restaurants, string toFind)
 {
-    string toFind = "";
-    
-    cout << "Which restaurant would you like to remove? :";
-    cin.ignore();
-    getline(cin, toFind);
-    //cin >> toFind;
-    
     if (find(restaurants.begin(), restaurants.end(), toFind) != restaurants.end())
     {
         //Erase the "removed" elements.
@@ -147,4 +147,8 @@ void shuffleVector(vector<string>& restaurants)
         restaurants[randomSubscriptTwo] = tempString;
     }
     cout << endl << "List has been shuffled!";
+}
+void tournament(vector<string>& restaurants)
+{
+    
 }
