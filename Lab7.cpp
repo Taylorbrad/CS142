@@ -152,7 +152,9 @@ void shuffleVector(vector<string>& restaurants)
 void tournament(vector<string>& restaurants)
 {
     int selection = 0;
-    for (int i = 1; restaurants.size() > 2; ++i)
+    int halfOfTheRestaurants = restaurants.size() / 2;
+    
+    for (int i = 1; restaurants.size() > 1; ++i)
     {
         cout << "#1: " << restaurants[i - 1] << endl;
         cout << "#2: " << restaurants[i] << endl;
@@ -181,6 +183,11 @@ void tournament(vector<string>& restaurants)
 		        break;
 		    }
 		}
+		if (restaurants.size() == halfOfTheRestaurants)
+		{
+		    i = 1;
+		}
 		
     }
+    
 }
