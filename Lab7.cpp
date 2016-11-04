@@ -1,4 +1,3 @@
-// Example program
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,7 +6,7 @@
 #include <ctime>
 using namespace std;
 
-void menuSelection(int selection, vector<string>& restaurants);
+int menuSelection(int selection, vector<string>& restaurants);
 void displayRestaurants(const vector<string> restaurants);
 void addRestaurant(vector<string>& restaurants);
 string removeRestaurant(vector<string>& restaurants, string toFind);
@@ -24,19 +23,26 @@ const int FALSE_RETURN_VALUE = -1;
 Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
 Description: Restaurant tournament simulator
 Inputs: Menu selections, restaurant names to add or remove.
-Outputs: list of restaurants, winner of tournament, various clarification text.
+Outputs: list of restaurants, winner of tournament, various clarification/updating text.
 
-Test Case One:
-Inputs:
+Test Case One
+Inputs: Menu option 1, -1, 7, Menu option 4, Menu option 1, Menu option 6.
 Outputs:
+Restaurant list: McDonalds, Little Caesar's, Arby's, Pizza Hut, Sonic, Winger's, Panda Express, In-N-Out Burger.
+Invalid selection, invalid selection.
+Ensure list has been shuffled.
 
-Test Case Two:
-Inputs:
+Test Case Two
+Inputs: Menu option 3, "Arby's", Menu option 5, Menu option 2, "Burger King", Menu option 2, "A&W", Menu option 3, "A&W", Menu option 1, Menu option 6.
 Outputs:
+'Arby's' removed, incorrect # of opponents, 'Burger King' added, 'A&W' added, 'A&W' removed,
+Restaurant list: McDonald's, Little Caesar's, Pizza Hut, Sonic, Winger's, Panda Express, In-N-Out Burger, Burger King.
 
-Test Case Three:
-Inputs:
+Test Case Three
+Inputs: Menu option 2, "A&W", Menu option 5, Menu option 3, "A&W", Menu option 5, tournament selections: #2, #2, #2, #2, #2, #2, #2 
 Outputs:
+'A&W' added, invalid # of opponents, 'A&W' removed
+In-N-Out Burger is the winner!
 */
 int main()
 {
@@ -73,13 +79,20 @@ int main()
 		}
 		else
 		{
-			menuSelection(selection, restaurants);
+			selection = menuSelection(selection, restaurants);
+			if (selection == 0)
+			{
+				cout << endl << endl;
+				system("pause");
+				return 0;
+			}
 		}
 	}
 
 }
-void menuSelection(int selection, vector<string>& restaurants)
+int menuSelection(int selection, vector<string>& restaurants)
 {
+	string winner;
 	string toFind = "";
 
 	switch (selection)
@@ -101,7 +114,19 @@ void menuSelection(int selection, vector<string>& restaurants)
 		shuffleVector(restaurants);
 		break;
 	case 5:
-		cout << tournament(restaurants) << " is the winner!!";
+		winner = tournament(restaurants);
+
+		if (winner != "invalid")
+		{
+			cout << winner << " is the winner!!";
+			return 0;
+		}
+		else
+		{
+			cout << "Incorrect amount of opponents!" << endl;
+			return 1;
+		}
+			
 		system("pause");
 		break;
 	case 6:
@@ -196,12 +221,12 @@ string tournament(vector<string>& restaurants)
 				incorrectInput();
 				--i;
 			}
-			else if (selection == 1)
+			else if (selection == OPTION_ONE)
 			{
 				removeRestaurant(restaurants, restaurants[i]);
 				--size;
 			}
-			else if (selection == 2)
+			else if (selection == OPTION_TWO)
 			{
 				removeRestaurant(restaurants, restaurants[i - 1]);
 				--size;
@@ -218,15 +243,16 @@ string tournament(vector<string>& restaurants)
 	}
 	else
 	{
-		cout << "Incorrect amount of opponents!" << endl;
-		main();
+		
+		return "invalid";
 	}
 }
 int checkIfIsPower(int numberToCheck)
 {
+	const int NUMBER_TO_EXPONENT = 2;
 	for (int power = 1; power < ARBITRARY_ITERATION_NUMBER; ++power)
 	{
-		if (numberToCheck == pow(2, power))
+		if (numberToCheck == pow(NUMBER_TO_EXPONENT, power))
 		{
 			return power;
 		}
