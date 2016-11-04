@@ -21,22 +21,22 @@ const int ARBITRARY_ITERATION_NUMBER = 100;
 const int FALSE_RETURN_VALUE = -1;
 
 /*
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
-TEST CASES HOMIE
+Taylor Bradshaw, Section _, taylor.bradshaw0250@gmail.com
+Description: Restaurant tournament simulator
+Inputs: Menu selections, restaurant names to add or remove.
+Outputs: list of restaurants, winner of tournament, various clarification text.
+
+Test Case One:
+Inputs:
+Outputs:
+
+Test Case Two:
+Inputs:
+Outputs:
+
+Test Case Three:
+Inputs:
+Outputs:
 */
 int main()
 {
