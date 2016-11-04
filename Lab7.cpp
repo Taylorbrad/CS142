@@ -13,6 +13,7 @@ void addRestaurant(vector<string>& restaurants);
 void removeRestaurant(vector<string>& restaurants, string toFind);
 void shuffleVector(vector<string>& restaurants);
 void tournament(vector<string>& restaurants);
+bool checkIfIsPower(int numToCheck);
 
 int main()
 {
@@ -156,18 +157,18 @@ void tournament(vector<string>& restaurants)
     int size = restaurants.size();
     bool isPower = false;
     
-    isPower = checkIfIsPower(size);
-    
-    if (isPower)
+    //isPower = ;
+
+    if (checkIfIsPower(size))
     {
         for (int i = 1; size > 1; ++i)
         {
-            cout << i;
-            //cout << "#1: " << restaurants[i - 1] << endl;
-            //cout << "#2: " << restaurants[i] << endl;
+            //cout << i;
+            cout << "#1: " << restaurants[i - 1] << endl;
+            cout << "#2: " << restaurants[i] << endl;
             cout << "Which restaurant do you prefer? (1 or 2): ";
             cin >> selection;
-            cout << "nofail";
+            //cout << "nofail";
             //selection = 1;
             if (cin.fail() || selection < 1 || selection > 3)
     		{
@@ -209,13 +210,13 @@ void tournament(vector<string>& restaurants)
 }
 bool checkIfIsPower(int numberToCheck)
 {
-    bool isPower;
     for (int power = 1; power < 100; ++power)
     {
-        if (numberToCheck == pow(2, power)
+        if (numberToCheck == pow(2, power))
         {
-            bool isPower = true;
+            return true;
         }
     }
-    return isPower;
+    
+    //return isPower;
 }
