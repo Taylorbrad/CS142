@@ -12,6 +12,7 @@ void displayRestaurants(const vector<string> restaurants);
 void addRestaurant(vector<string>& restaurants);
 void removeRestaurant(vector<string>& restaurants, string toFind);
 void shuffleVector(vector<string>& restaurants);
+void tournament(vector<string>& restaurants);
 
 int main()
 {
@@ -78,7 +79,7 @@ void menuSelection(int selection, vector<string>& restaurants)
     shuffleVector(restaurants);
     break;
     case 5:
-    
+    tournament(restaurants);
     break;
     case 6:
     //DONE
