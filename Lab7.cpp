@@ -155,9 +155,6 @@ void tournament(vector<string>& restaurants)
     int selection = 0;
     int halfOfTheRestaurants = restaurants.size() / 2;
     int size = restaurants.size();
-    bool isPower = false;
-    
-    //isPower = ;
 
     if (checkIfIsPower(size))
     {
@@ -217,6 +214,4 @@ bool checkIfIsPower(int numberToCheck)
             return true;
         }
     }
-    
-    //return isPower;
 }
