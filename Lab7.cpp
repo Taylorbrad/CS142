@@ -151,12 +151,19 @@ void shuffleVector(vector<string>& restaurants)
 void tournament(vector<string>& restaurants)
 {
     int selection = 0;
-    for (int i = 0; restaurant.size() > 2; ++i)
+    for (int i = 0; restaurants.size() > 2; ++i)
     {
         cout << "#" << i << ": " << restaurants[i - 1] << endl;
         cout << "#" << i + 1 << ": " << restaurants[i] << endl;
         cout << "Which restaurant do you prefer? " << i << " or " << i + 1 << "? : ";
-        cin.ignore();
-        getline(cin, selection);
+        cin >> selection;
+        
+        if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << endl << "---Invalid Selection. Please select a number from the menu---" << endl;
+			--i;
+		}
     }
 }
