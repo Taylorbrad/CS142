@@ -11,6 +11,9 @@ int menu(int selection);
 int main()
 {
     int selection = 0;
+    double balance = 0;
+    balance = 10000;
+    
     while (1 == 1)
     {
         cout << "1 - Show Current Inventory" << endl;
@@ -38,32 +41,57 @@ int main()
 }
 int menu(int selection)
 {
-      switch (selection)
-      {
+    switch (selection)
+    {
+            
+
+              //MAGIC NUMBRENOS
             case 1:
-              
+
               break;
             case 2:
-              
+
               break;
             case 3:
-              
+
               break;
             case 4:
-              
+
               break;
             case 5:
-              
+
               break;
             case 6:
-              
+
               break;
             case 7:
-              
+
               break;
             case 8:
-              
+
               return 0;
               break;
       }
+}
+void showInventory()
+{
+}
+void showBalance()
+{
+    
+}
+void buyCar()
+{
+}
+void sellCar()
+{
+}
+void paintCar()
+{
+}
+void loadFile()
+{
+}
+void saveFile()
+{
 }
