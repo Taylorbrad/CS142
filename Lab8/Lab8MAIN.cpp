@@ -6,7 +6,14 @@
 
 using namespace std;
 
-int menu(int selection);
+int menu(int selection, double balance);
+void showInventory();
+double getBalance(double balance);
+void buyCar();
+void sellCar();
+void paintCar();
+void loadFile();
+void saveFile();
 
 int main()
 {
@@ -29,11 +36,11 @@ int main()
         
         if (selection == 8)
         {
-            return menu(selection);
+            return menu(selection, balance);
         }
         else
         {
-            menu(selection);
+            menu(selection, balance);
         }
       }
   
@@ -46,39 +53,39 @@ int menu(int selection)
             
 
               //MAGIC NUMBRENOS
-            case 1:
+        case 1:
 
-              break;
-            case 2:
+          break;
+        case 2:
+            cout << endl << "Current balance is: $" << getBalance(balance) << endl;
+          break;
+        case 3:
 
-              break;
-            case 3:
+          break;
+        case 4:
 
-              break;
-            case 4:
+          break;
+        case 5:
 
-              break;
-            case 5:
+          break;
+        case 6:
 
-              break;
-            case 6:
+          break;
+        case 7:
 
-              break;
-            case 7:
+          break;
+        case 8:
 
-              break;
-            case 8:
-
-              return 0;
-              break;
+          return 0;
+          break;
       }
 }
 void showInventory()
 {
 }
-void showBalance()
+double getBalance(double balance)
 {
-    
+    return balance;
 }
 void buyCar()
 {
