@@ -2,16 +2,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 //#include "Car.h"
 
 using namespace std;
 
-int menu(int selection, double balance);
-void showInventory();
+int menu(int selection, double balance, vector<Car> currentInventory);
+void showInventory(vector<Car> currentInventory);
 double getBalance(double balance);
-void buyCar();
-void sellCar();
-void paintCar();
+void buyCar(vector<Car> currentInventory, double& balance);
+void sellCar(vector<Car> currentInventory);
+void paintCar(vector<Car> currentInventory);
 void loadFile();
 void saveFile();
 
@@ -20,6 +21,7 @@ int main()
     int selection = 0;
     double balance = 0;
     balance = 10000;
+    vector<Car> currentInventory;
     
     while (1 == 1)
     {
@@ -46,7 +48,7 @@ int main()
   
   
 }
-int menu(int selection)
+int menu(int selection, double balance, vector<Car> currentInventory)
 {
     switch (selection)
     {
@@ -54,10 +56,10 @@ int menu(int selection)
 
               //MAGIC NUMBRENOS
         case 1:
-
+            showInventory(currentInventory)
           break;
         case 2:
-            cout << endl << "Current balance is: $" << getBalance(balance) << endl;
+            cout << endl << "Current balance is: $" << getBalance(balance) << endl << endl;
           break;
         case 3:
 
@@ -80,15 +82,41 @@ int menu(int selection)
           break;
       }
 }
-void showInventory()
+void showInventory(vector<Car> currentInventory)
 {
+    cout << endl << "--------Current Inventory--------" << endl << endl;
+    for (int i = 0; i < currentInventory.size(); ++i)
+    {
+        cout << currentInventory[i].toString();
+    }
 }
 double getBalance(double balance)
 {
     return balance;
 }
-void buyCar()
+void buyCar(vector<Car> currentInventory, double& balance)
 {
+    string nameOfCar = "";
+    string colorOfCar = "";
+    double priceOfCar = 0;
+    
+    cout << "name of caeerrr" << endl;
+    cin >> nameOfCar;
+    cout << "color" << endl;
+    cin >> colorOfCar;
+    cout << "price is right" << endl;
+    cin >> priceOfCar;
+
+    if (balance >= priceOfCar)
+    {
+        Car newCar = Car(nameOfCar, colorOfCar, priceOfCar);
+        currentInventory.push_back(newCar);
+        balance -= priceOfCar;
+    }
+    else
+    {
+        cout << endl << "Car is too expensive!" << endl << endl;
+    }
 }
 void sellCar()
 {
