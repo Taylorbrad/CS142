@@ -11,10 +11,10 @@ int menu(int selection, double balance, vector<Car> currentInventory);
 void showInventory(vector<Car> currentInventory);
 double getBalance(double balance);
 void buyCar(vector<Car> currentInventory, double& balance);
-void sellCar(vector<Car> currentInventory);
+void sellCar(vector<Car> currentInventory, double& balance);
 void paintCar(vector<Car> currentInventory);
-void loadFile();
-void saveFile();
+void loadFile(vector<Car> currentInventory);
+void saveFile(vector<Car> currentInventory);
 
 int main()
 {
@@ -118,15 +118,27 @@ void buyCar(vector<Car> currentInventory, double& balance)
         cout << endl << "Car is too expensive!" << endl << endl;
     }
 }
-void sellCar()
+void sellCar(vector<Car> currentInventory, double& balance)
 {
 }
 void paintCar()
 {
 }
-void loadFile()
+void loadFile(vector<Car> currentInventory)
 {
+    string fileToOpen "";
+    ifstream inFile;
+    
+    cout << "what file would you like to open?";
+    cin >> fileToOpen;
+    
+    inFile.open(fileToOpen);
+    if (inFile.is_open)
+    {
+        //code to write file to new cars in vector
+    }
 }
-void saveFile()
+void saveFile(vector<Car> currentInventory)
 {
+    
 }
