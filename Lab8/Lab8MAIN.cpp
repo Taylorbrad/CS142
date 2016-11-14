@@ -28,6 +28,36 @@ int main()
         cout << "1 - Show Current Inventory" << endl;
         cout << "2 - Show Current Ballance" << endl;
         cout << "3 - Buy a Car" << endl;
+        cout << "4 - Sell a Ca// Example program
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+//#include "Car.h"
+
+using namespace std;
+
+int menu(int selection, double balance, vector<Car> currentInventory);
+void showInventory(vector<Car> currentInventory);
+double getBalance(double balance);
+void buyCar(vector<Car> currentInventory, double& balance);
+void sellCar(vector<Car> currentInventory, double& balance);
+void paintCar(vector<Car> currentInventory);
+void loadFile(vector<Car> currentInventory);
+void saveFile(vector<Car> currentInventory);
+
+int main()
+{
+    int selection = 0;
+    double balance = 0;
+    balance = 10000;
+    vector<Car> currentInventory;
+    
+    while (1 == 1)
+    {
+        cout << "1 - Show Current Inventory" << endl;
+        cout << "2 - Show Current Ballance" << endl;
+        cout << "3 - Buy a Car" << endl;
         cout << "4 - Sell a Car" << endl;
         cout << "5 - Paint a Car" << endl;
         cout << "6 - Load File" << endl;
@@ -124,21 +154,56 @@ void sellCar(vector<Car> currentInventory, double& balance)
 void paintCar()
 {
 }
-void loadFile(vector<Car> currentInventory)
+void loadFile(vector<Car> currentInventory, double& salary)
 {
-    string fileToOpen "";
+    string fileToOpen = "";
+    string salaryString = "";
+    string carName = "";
+    string carColor = "";
+    string carPrice = "";
     ifstream inFile;
     
     cout << "what file would you like to open?";
     cin >> fileToOpen;
     
-    inFile.open(fileToOpen);
-    if (inFile.is_open)
+    inFile.open(fileToOpen, ios::out);
+    if (inFile.is_open())
     {
         //code to write file to new cars in vector
+        
+        getline(inFile, salaryString);
+        //convert to double then update salary
+        for (int i = 0; i < currentInventory.size(); ++i)
+        {
+            getline(inFile, carName, " ");
+            getline(inFile, carColor, " ");
+            getline(inFile, carPrice);
+            
+            Car newCar = Car(carName, carColor, carPrice);
+            currentInventory.push_back(newCar);
+        }
     }
 }
-void saveFile(vector<Car> currentInventory)
+void saveFile(vector<Car> currentInventory, double salary)
 {
+    ofstream outFile;
+    string fileToOpen = "";
     
+    cout << "What would you like the file to be called?";
+    cin >> fileToOpen;
+    
+    outFile.open(fileToOpen, ios::app);
+    if (outFile.is_open())
+    {
+        outFile << salary << endl;
+        for (int i = 0; i < currentInventory.size(); ++i)
+        {
+            outFile << currentInventory[i].name << " " << currentInventory[i].color << " " << currentInventory[i].price << endl;
+        }
+        cout << "File successfully created!" << endl;
+    }
+    else
+    {
+        cout << "Error writing to file: " << fileToOpen << endl;
+    }
 }
