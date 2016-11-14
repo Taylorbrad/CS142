@@ -121,16 +121,48 @@ void buyCar(vector<Car> currentInventory, double& balance)
 }
 void sellCar(vector<Car> currentInventory, double& balance)
 {
+    string carToFind = "";
     
+    cout << "Which car would you like to sell?" << endl;
+    cin >> carToFind;
+    
+    for (int i = 0; i < currentInventory.size(); ++i)
+    {
+        if (carToFind == currentInventory[i].name)
+        {
+            //sell commands
+        }
+    }
 }
 void paintCar()
 {
+    string carToFind = "";
+    string newColor = "";
     
+    cout << "Which car would you like to paint?" << endl;
+    cin >> carToFind;
+    
+    for (int i = 0; i < currentInventory.size(); ++i)
+    {
+        if (carToFind == currentInventory[i].name)
+        {
+            cout << "What color would you like to paint the car?" << endl;
+            cin >> newColor;
+            
+            currentInventory[i].paint(newColor);
+            
+            cout << "Car successfully painted!" << endl;
+        }
+        else
+        {
+            cout << "Car name not found."; << endl;
+        }
+    }
 }
-void loadFile(vector<Car> currentInventory, double& salary)
+void loadFile(vector<Car> currentInventory, double& balance)
 {
     string fileToOpen = "";
-    string salaryString = "";
+    string balanceString = "";
     string carName = "";
     string carColor = "";
     string carPrice = "";
@@ -146,7 +178,7 @@ void loadFile(vector<Car> currentInventory, double& salary)
         //code to write file to new cars in vector
         
         getline(inFile, salaryString);
-        salary = atof(salaryString.c_str());
+        balance = atof(balanceString.c_str());
         
         for (int i = 0; i < currentInventory.size(); ++i)
         {
