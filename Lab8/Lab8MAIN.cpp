@@ -63,19 +63,19 @@ int menu(int selection, double balance, vector<Car> currentInventory)
             cout << endl << "Current balance is: $" << getBalance(balance) << endl << endl;
           break;
         case 3:
-
+            buyCar(currentInventory, balance);
           break;
         case 4:
-
+            sellCar(currentInventory, balance);
           break;
         case 5:
-
+            paintCar(currentInventory);
           break;
         case 6:
-
+            loadFile(currentInventory, balance);
           break;
         case 7:
-
+            saveFile(currentInventory, balance);
           break;
         case 8:
 
@@ -134,7 +134,7 @@ void sellCar(vector<Car> currentInventory, double& balance)
         }
     }
 }
-void paintCar()
+void paintCar(vector<Car> currentInventory)
 {
     string carToFind = "";
     string newColor = "";
@@ -192,7 +192,7 @@ void loadFile(vector<Car> currentInventory, double& balance)
         }
     }
 }
-void saveFile(vector<Car> currentInventory, double salary)
+void saveFile(vector<Car> currentInventory, double balance)
 {
     ofstream outFile;
     string fileToOpen = "";
@@ -203,7 +203,7 @@ void saveFile(vector<Car> currentInventory, double salary)
     outFile.open(fileToOpen, ios::app);
     if (outFile.is_open())
     {
-        outFile << salary << endl;
+        outFile << balance << endl;
         for (int i = 0; i < currentInventory.size(); ++i)
         {
             outFile << currentInventory[i].name << " " << currentInventory[i].color << " " << currentInventory[i].price << endl;
