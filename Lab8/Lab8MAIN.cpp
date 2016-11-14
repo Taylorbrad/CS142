@@ -121,9 +121,11 @@ void buyCar(vector<Car> currentInventory, double& balance)
 }
 void sellCar(vector<Car> currentInventory, double& balance)
 {
+    
 }
 void paintCar()
 {
+    
 }
 void loadFile(vector<Car> currentInventory, double& salary)
 {
