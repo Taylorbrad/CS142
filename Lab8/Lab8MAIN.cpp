@@ -210,7 +210,7 @@ void saveFile(vector<Car> currentInventory, double balance)
     cout << "What would you like the file to be called?";
     cin >> fileToOpen;
     
-    outFile.open(fileToOpen, ios::app);
+    outFile.open(fileToOpen, ios::app); //MAKE SURE YOU ARE SUPPOSED TO USE APP AND NOT SOMETHING ELSE FAM
     if (outFile.is_open())
     {
         outFile << balance << endl;
