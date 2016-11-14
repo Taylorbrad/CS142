@@ -14,9 +14,18 @@ double getBalance(double balance);
 void buyCar(vector<Car> currentInventory, double& balance);
 void sellCar(vector<Car> currentInventory, double& balance);
 void paintCar(vector<Car> currentInventory);
-void loadFile(vector<Car> currentInventory);
-void saveFile(vector<Car> currentInventory);
+void loadFile(vector<Car> currentInventory, double& balance);
+void saveFile(vector<Car> currentInventory, double balance);
 
+const int SHOW_INVENTORY = 1;
+const int SHOW_BALANCE = 2;
+const int BUY_CAR = 3;
+const int SELL_CAR = 4;
+const int PAINT_CAR = 5;
+const int LOAD_FILE = 6;
+const int SAVE_FILE = 7;
+const int QUIT = 8;
+    
 int main()
 {
     int selection = 0;
@@ -24,7 +33,7 @@ int main()
     balance = 10000;
     vector<Car> currentInventory;
     
-    while (1 == 1)
+    while (true)
     {
         cout << "1 - Show Current Inventory" << endl;
         cout << "2 - Show Current Ballance" << endl;
@@ -37,7 +46,7 @@ int main()
         cout << "Selection: ";
         cin >> selection;
         
-        if (selection == 8)
+        if (selection == QUIT)
         {
             return menu(selection, balance);
         }
@@ -51,33 +60,34 @@ int main()
 }
 int menu(int selection, double balance, vector<Car> currentInventory)
 {
+    
     switch (selection)
     {
             
 
               //MAGIC NUMBRENOS
-        case 1:
+        case SHOW_INVENTORY:
             showInventory(currentInventory)
           break;
-        case 2:
+        case SHOW_BALANCE:
             cout << endl << "Current balance is: $" << getBalance(balance) << endl << endl;
           break;
-        case 3:
+        case BUY_CAR:
             buyCar(currentInventory, balance);
           break;
-        case 4:
+        case SELL_CAR:
             sellCar(currentInventory, balance);
           break;
-        case 5:
+        case PAINT_CAR:
             paintCar(currentInventory);
           break;
-        case 6:
+        case LOAD_FILE:
             loadFile(currentInventory, balance);
           break;
-        case 7:
+        case SAVE_FILE:
             saveFile(currentInventory, balance);
           break;
-        case 8:
+        case QUIT:
 
           return 0;
           break;
@@ -153,10 +163,10 @@ void paintCar(vector<Car> currentInventory)
             
             cout << "Car successfully painted!" << endl;
         }
-        else
-        {
-            cout << "Car name not found."; << endl;
-        }
+    }
+    if (newColor == "")
+    {
+        cout << "Car name not found."; << endl;
     }
 }
 void loadFile(vector<Car> currentInventory, double& balance)
@@ -178,7 +188,7 @@ void loadFile(vector<Car> currentInventory, double& balance)
         //code to write file to new cars in vector
         
         getline(inFile, salaryString);
-        balance = atof(balanceString.c_str());
+        balance += atof(balanceString.c_str());
         
         for (int i = 0; i < currentInventory.size(); ++i)
         {
