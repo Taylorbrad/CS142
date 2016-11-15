@@ -5,6 +5,9 @@ using namespace std;
 
 class Property
 {
+    private:
     string address;
+    
+    public:
+    string toString();
 }
-string toString();
