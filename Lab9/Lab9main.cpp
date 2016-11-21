@@ -103,6 +103,106 @@ void displayLineUp(vector<Player>* lineUp)
         }
     }
 }
+int getWhoWon(int firstThrow, int secondThrow)
+{
+    if (firstThrow == 1)
+    {
+        if(secondThrow == 1)
+        {
+            return 0;
+        }
+        else if (secondThrow == 2)
+        {
+            return 2;
+        }
+        else if (secondThrow == 3)
+        {
+            return 1;
+        }
+    }
+    else if (firstThrow == 2)
+    {
+        if(secondThrow == 1)
+        {
+            return 1;
+        }
+        else if (secondThrow == 2)
+        {
+            return 0;
+        }
+        else if (secondThrow == 3)
+        {
+            return 2;
+        }
+    }
+    else if (firstThrow == 3)
+    {
+        if(secondThrow == 1)
+        {
+            return 2;
+        }
+        else if (secondThrow == 2)
+        {
+            return 1;
+        }
+        else if (secondThrow == 3)
+        {
+            return 0;
+        }
+    }
+}
+void fight(vector<Player*>& lineUp)
+{
+    int playerOneThrow = 0;
+    int playerTwoThrow = 0;
+    int whoWon = 0;
+    int whoLost = 1;
+    playerOneThrow = (*(lineup[0])).getRPSThrow();
+    playerTwoThrow = (*(lineup[1])).getRPSThrow();
+    
+    if ((*(lineUp[0])).name  == (*(lineUp[1])).name)
+    {
+        cout << "It's a Draw!" << endl;
+        (*(lineUp[0])).draws += 1;
+        (*(lineUp[0])).games += 1;
+        removePlayers(lineUp);
+    }
+    else
+    {
+        whoWon = getWhoWon(playerOneThrow, playerTwoThrow);
+        if (whoWon == 1)
+        {
+            whoLost = 2;
+        }
+        if (whoWon == 0)
+        {
+            cout << "It's a Draw!" << endl;
+            (*(lineUp[0])).draws += 1;
+            (*(lineUp[0])).games += 1;
+            (*(lineUp[1])).draws += 1;
+            (*(lineUp[1])).games += 1;
+            removePlayers(lineUp);
+        }
+        else
+        {
+            cout << "Fight initiated between Name1 and Name2!" << endl << endl;
+            cout << (*(lineUp[0])).name << " throws " << playerOneThrow << endl;
+            cout << (*(lineUp[1])).name << " throws " << playerTwoThrow << endl << endl;
+            cout << (*(lineUp[whoWon - 1])).name << " is the winner!" endl;
+            
+            (*(lineUp[whoWon - 1])).wins += 1;
+            (*(lineUp[whoWon - 1])).games += 1;
+            (*(lineUp[whoLost - 1])).losses += 1;
+            (*(lineUp[whoWon - 1])).games += 1;
+            removePlayers(lineUp);
+        }
+    }
+}
+void removePlayers(vector<Player*>& lineUp)
+{
+    lineUp.erase(lineUp.begin());
+    lineUp.erase(lineUp.begin());
+}
 int main()
 {
     const int SHOW_PLAYERS = 1;
@@ -129,15 +229,15 @@ int main()
         break;
         
         case ADD_TO_LINE_UP:
-        
+        addToLineUp(listOfPlayers, lineUpOfPlayers);
         break;
         
         case SHOW_LINE_UP:
-        
+        displayLineUp(lineUpOfPlayers);
         break;
         
         case FIGHT:
-        
+        fight(lineUpOfPlayers);
         break;
         
         case QUIT:
