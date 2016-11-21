@@ -36,14 +36,11 @@ string displayPlayers(vector<Player*> allPlayers)
     
     return ss;
 }
-void addPlayer(vector<Player*> allPlayers)
+void addPlayer(vector<Player*>& allPlayers)
 {
-    string name;
-    
-    cout << "What is the name of the player?" << endl;
-    getline(cin, name);
+    string name = getName();
     //Check if name already exists
-    if (checkIfNameExists)
+    if (checkIfNameExists(name, allPlayers) != -1)
     {
         Player* newGuy(name);
         allPlayers.push_back(newGuy);
@@ -53,19 +50,58 @@ void addPlayer(vector<Player*> allPlayers)
     {
         cout << "Name already Exists!" << endl;
     }
-    
-    
 }
-bool checkIfNameExists(string name, vector<Player*> allPlayers)
+int checkIfNameExists(string name, vector<Player*> allPlayers)
 {
     for (int i = 0; i < allPlayers.size(); ++i)
     {
         if (name == (*(allPlayers[i])).name)
         {
-            return true;
+            return i;
         }
     }
-    return false;
+    return -1;
+}
+string getName()
+{
+    string name;
+    
+    cout << "What is the name of the player you want to add?" << endl;
+    getline(cin, name);
+    
+    return name;
+}
+void addToLineUp(vector<Player*> allPlayers, vector<Player*>& lineUp)
+{
+    string name = getName();
+    int subscriptForName = checkIfNameExists(name, allPlayers);
+    if (subscriptForName != -1)
+    {
+        Player* newPlayerInQueue = (*(allPlayers[subscriptForName]));
+        lineUp.push_back(newPlayerInQueue);
+    }
+    else
+    {
+        cout << "Player not found!" << endl;
+    }
+}
+void displayLineUp(vector<Player>* lineUp)
+{
+    cout << endl;
+    cout << "---------------Current Line-Up---------------" << endl;
+    ciut << "1: ";
+    for (int i = 0; i < lineUp.size(); ++i)
+    {
+        cout << (*(lineUp[i])).name;
+        if (i == (lineUp.size() - 1))
+        {
+            cout << ", " << i << ": ";
+        }
+        else
+        {
+            cout << ".";
+        }
+    }
 }
 int main()
 {
