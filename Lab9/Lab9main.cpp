@@ -171,8 +171,7 @@ void fight(vector<Player*>& lineUp)
     if ((*(lineUp[0])).name  == (*(lineUp[1])).name)
     {
         cout << "It's a Draw!" << endl;
-        (*(lineUp[0])).draws += 1;
-        (*(lineUp[0])).games += 1;
+        (*(lineUp[0])).addDraw();
         removePlayers(lineUp);
     }
     else
@@ -185,10 +184,8 @@ void fight(vector<Player*>& lineUp)
         if (whoWon == 0)
         {
             cout << "It's a Draw!" << endl;
-            (*(lineUp[0])).draws += 1;
-            (*(lineUp[0])).games += 1;
-            (*(lineUp[1])).draws += 1;
-            (*(lineUp[1])).games += 1;
+            (*(lineUp[0])).addDraw();
+            (*(lineUp[1])).addDraw();
             removePlayers(lineUp);
         }
         else
@@ -198,10 +195,8 @@ void fight(vector<Player*>& lineUp)
             cout << (*(lineUp[1])).name << " throws " << playerOneRPS << endl << endl;
             cout << (*(lineUp[whoWon - 1])).name << " is the winner!" endl;
             
-            (*(lineUp[whoWon - 1])).wins += 1;
-            (*(lineUp[whoWon - 1])).games += 1;
-            (*(lineUp[whoLost - 1])).losses += 1;
-            (*(lineUp[whoWon - 1])).games += 1;
+            (*(lineUp[whoWon - 1])).addWin();
+            (*(lineUp[whoLost - 1])).addLoss();
             removePlayers(lineUp);
         }
     }
