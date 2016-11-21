@@ -19,6 +19,8 @@ class Player
             //Constructor for player
             Player(string nameInput);
             calculateRecord();
+            getRPSThrow();
+            toString();
             /*Figure out what this does*/virtual ~Player();
             
             //function definitios here
