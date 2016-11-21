@@ -20,8 +20,7 @@ int getMenuOption()
 
 string displayPlayers(vector<Player*> allPlayers)
 {
-    stringstream ss;
-    ss << endl;
+    
     ss << "--------------------------------";
     for (int i = 0; i < allPlayers.size(); ++i)
     {
@@ -31,11 +30,7 @@ string displayPlayers(vector<Player*> allPlayers)
         ss << "-----------------";
         }
         ss << "#" << i + 1 << ": " << endl;
-        ss << (*(allPlayers[i])).name << endl;
-        ss << "Wins: " << (*(allPlayers[i])).wins << endl;
-        ss << "Losses: " << (*(allPlayers[i])).losses << endl;
-        ss << "Draws: " << (*(allPlayers[i])).draws << endl;
-        ss << "Record: " << (*(allPlayers[i])).record << endl;
+        ss << (*(allPlayers[i])).toString();
     }
     ss << "--------------------------------" << endl << endl;
     
