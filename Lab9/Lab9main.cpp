@@ -1,7 +1,9 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "Player.h"
+
 
 int getMenuOption()
 {
@@ -157,8 +159,14 @@ void fight(vector<Player*>& lineUp)
     int playerTwoThrow = 0;
     int whoWon = 0;
     int whoLost = 1;
-    playerOneThrow = (*(lineup[0])).getRPSThrow();
-    playerTwoThrow = (*(lineup[1])).getRPSThrow();
+    string playerOneRPS = (*(lineup[0])).getRPSThrow();
+    string playerTwoRPS = (*(lineup[1])).getRPSThrow();
+    
+    playerOneThrow = rand() % 3;
+    playerTwoThrow = rand() % 3;
+    
+    playerOneRPS = (*(lineup[0])).getRPSThrow(playerOneThrow);
+    playerTwoRPS = (*(lineup[1])).getRPSThrow(playerTwoThrow);
     
     if ((*(lineUp[0])).name  == (*(lineUp[1])).name)
     {
@@ -185,9 +193,9 @@ void fight(vector<Player*>& lineUp)
         }
         else
         {
-            cout << "Fight initiated between Name1 and Name2!" << endl << endl;
-            cout << (*(lineUp[0])).name << " throws " << playerOneThrow << endl;
-            cout << (*(lineUp[1])).name << " throws " << playerTwoThrow << endl << endl;
+            cout << "Fight initiated between " << (*(lineUp[0])).name << " and " << (*(lineUp[1])).name << endl << endl;
+            cout << (*(lineUp[0])).name << " throws " << playerOneRPS << endl;
+            cout << (*(lineUp[1])).name << " throws " << playerOneRPS << endl << endl;
             cout << (*(lineUp[whoWon - 1])).name << " is the winner!" endl;
             
             (*(lineUp[whoWon - 1])).wins += 1;
@@ -216,6 +224,7 @@ int main()
     vector<Player*> listOfPlayers;
     vector<Player*> lineUpOfPlayers;
     
+    srand(time(0));
     selection = getMenuOption();
     
     switch(selection)
