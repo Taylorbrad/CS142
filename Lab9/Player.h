@@ -19,7 +19,6 @@ class Player
             //Constructor for player
             Player(string nameInput);
             calculateRecord();
-            displayPlayers(vector<Player*> allPlayers);
             /*Figure out what this does*/virtual ~Player();
             
             //function definitios here
