@@ -9,52 +9,64 @@ using namespace std;
 
 Player::Player(string nameInput)
 {
-    name = nameInput;
+	name = nameInput;
 }
 void Player::calculateRecord()
 {
-    this->record = this->wins / this->games;
+	if (this->games != 0)
+	{
+		this->record = this->wins / this->games;
+	}
+	else
+	{
+		this->record = 0;
+	}
 }
 string Player::getRPSThrow(int randNumb)
 {
-    if (randNumb == 1)
-    {
-        return "Rock";
-    }
-    else if (randNumb == 2)
-    {
-        return "Paper";
-    }
-    else if (randNumb == 3)
-    {
-        return "Scissors";
-    }
+	if (randNumb == 1)
+	{
+		return "Rock";
+	}
+	else if (randNumb == 2)
+	{
+		return "Paper";
+	}
+	else if (randNumb == 3)
+	{
+		return "Scissors";
+	}
 }
 string Player::toString()
 {
-    Player::calculateRecord();
-    stringstream ss;
-    ss << (*(allPlayers[i])).name << endl;
-    ss << "Wins: " << (*(allPlayers[i])).wins << endl;
-    ss << "Losses: " << (*(allPlayers[i])).losses << endl;
-    ss << "Draws: " << (*(allPlayers[i])).draws << endl;
-    ss << "Record: " << (*(allPlayers[i])).record << endl;
-    
-    return ss.str();
+	Player::calculateRecord();
+	stringstream ss;
+
+	ss << "Name: " << this->name << endl;
+	ss << "Wins: " << this->wins << endl;
+	ss << "Losses: " << this->losses << endl;
+	ss << "Draws: " << this->draws << endl;
+	ss << "Record: " << this->record << endl;
+
+	return ss.str();
 }
 void Player::addWin()
 {
-    ++this->games;
-    ++this->wins;
+	++this->games;
+	++this->wins;
 }
 void Player::addLoss()
 {
-    ++this->games;
-    ++this->losses;
+	++this->games;
+	++this->losses;
 }
 void Player::addDraw()
 {
-    ++this->games;
-    ++this->draws;
+	++this->games;
+	++this->draws;
+}
+string Player::getName()
+{
+	return this->name;
 }
 Player::~Player(){}
