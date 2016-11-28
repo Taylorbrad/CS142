@@ -10,9 +10,13 @@ Property::Property(string addressInput)
     address = addressInput;
 }
 
-Property::toString()
+string Property::toString()
 {
     stringstream ss;
     ss << "Address: " << this->address;
     return ss.str();
+}
+string Property::getAddress()
+{
+    return this->address;
 }
