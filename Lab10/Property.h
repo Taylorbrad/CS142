@@ -10,4 +10,5 @@ class Property
     
     public:
     string toString();
+    void getAddress();
 }
