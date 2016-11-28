@@ -13,6 +13,6 @@ Property::Property(string addressInput)
 Property::toString()
 {
     stringstream ss;
-    ss << "Address: " << address;
+    ss << "Address: " << this->address;
     return ss.str();
 }
