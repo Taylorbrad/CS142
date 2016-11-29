@@ -61,7 +61,7 @@ int main()
                 getline(toOpen, isOccupied, ' ');
                 getline(toOpen, address, '\n');
                 
-                Residential* test1 = new Residential(/*TODO: add Paramaters*/);
+                Residential* test1 = new Residential(address, isOccupied, isRental, value, id);
                 residentialProperties.push_back(test1);
             }
             else
