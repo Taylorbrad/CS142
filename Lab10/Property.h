@@ -17,5 +17,5 @@ class Property
     
     public:
     Property(string addressInput, bool isRental, double value, int id);
-    string toString();
+    virtual string toString() = 0;
 }
