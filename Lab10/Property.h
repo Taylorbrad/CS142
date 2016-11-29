@@ -11,6 +11,7 @@ class Property
 {
     private:
     string address;
+    bool isRental;
     
     public:
     string toString();
