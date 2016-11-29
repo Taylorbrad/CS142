@@ -15,9 +15,16 @@ Commercial::Commercial(string address, bool isDiscounted, bool isRental, double 
 Commercial::toString()
 {
   stringstream ss;
-  string isRentalString;
-  string isDiscountedString;
-  
-  ss << "Property id: " << this->id << " Address: " << this->address << " " << isRentalString <<  " Estimated Value: " << this->value << " " << isDiscountedString << " Discount: " << discount;
+  string isRentalString = " NOT Rental ";
+  string isDiscountedString = " NOT Discounted ";
+  if (this->isDiscounted)
+  {
+    isDiscountedString = " Discounted ";
+  }
+  if (this->isRental)
+  {
+    isRentalString = " Rental ";
+  }
+  ss << "Property id: " << this->id << " Address: " << this->address << " " << isRentalString <<  " Estimated Value: " << this->value << isDiscountedString << "Discount: " << discount;
   return ss.str();
 }
