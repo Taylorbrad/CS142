@@ -16,7 +16,6 @@ class Property
     int id = 0;
     
     public:
-    Property(string);
+    Property(string addressInput, bool isRental, double value, int id);
     string toString();
-    string getAddress();
 }
