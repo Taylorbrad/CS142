@@ -10,7 +10,7 @@ using namespace std;
 class Commercial : public Property
 {
     public:
-    Commercial();
+    Commercial(string address, bool isDiscounted, bool isRental, double discount, double value);
     
     private:
     bool isDiscounted;
