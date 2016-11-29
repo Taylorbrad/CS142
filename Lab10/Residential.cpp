@@ -10,3 +10,7 @@ Residential::Residential(string address, bool isOccupied, bool isRental, double 
 {
   this->isOccupied = isOccupied;
 }
+string toString()
+{
+  
+}
