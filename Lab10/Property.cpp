@@ -14,9 +14,9 @@ Property::Property(string addressInput)
 
 string Property::toString()
 {
-    stringstream ss;
-    ss << "Address: " << this->address;
-    return ss.str();
+    //stringstream ss;
+    //ss << "Address: " << this->address;
+    return this->address;
 }
 string Property::getAddress()
 {
