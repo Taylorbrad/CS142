@@ -1,3 +1,6 @@
+#pragma once //Figure out what this is also
+#include <iostream>
+#include <vector>
 #include <string>
 //#include <>
 using namespace std;
