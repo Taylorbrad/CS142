@@ -29,8 +29,7 @@ int main()
     bool isRental = false;
     bool isDiscounted = false;
     bool isOccupied = false;
-    vector<Commercial*> commercialProperties;
-    vector<Residential*> residentialProperties;
+    vector<Property*> properties;
     vector<stringstream> badLinesSS;
     
     fileName = getFileName();
@@ -54,7 +53,7 @@ int main()
                 getline(toOpen, address, '\n');
                     
                 Commercial* test = new Commercial(address, isDiscounted,  isRental, discount, value, id);
-                commercialProperties.push_back(test); 
+                properties.push_back(test); 
             }
             else if (typeOfProperty = "Residential")
             {
@@ -62,7 +61,7 @@ int main()
                 getline(toOpen, address, '\n');
                 
                 Residential* test1 = new Residential(address, isOccupied, isRental, value, id);
-                residentialProperties.push_back(test1);
+                properties.push_back(test1);
             }
             else
             {
