@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-
+#include "Property.h"
 using namespace std;
 string getFileName()
 {
