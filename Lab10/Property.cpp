@@ -14,10 +14,11 @@ Property::Property(string addressInput, bool isRental, double value, int id)
     this->id = id;
     this->address = addressInput;
 }
-
+/*
 string Property::toString()
 {
     //stringstream ss;
     //ss << "Address: " << this->address;
     return this->address;
 }
+*/
