@@ -13,6 +13,7 @@ class Property
     string address;
     bool isRental;
     double value = 0;
+    int id = 0;
     
     public:
     Property(string);
