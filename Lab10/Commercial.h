@@ -12,5 +12,6 @@ class Commercial : public Property
     public:
     
     private:
-    
+    bool isDiscounted;
+    double discount = 0;
 };
