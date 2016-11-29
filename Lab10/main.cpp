@@ -32,20 +32,24 @@ int main()
     
     toOpen.open("fileName");
     
-    if (toOpen.is_open();
+    if (toOpen.is_open());
     {
         while (!toOpen.eof())
         {
             getline(toOpen, typeOfProperty, ' ');
-            getline(toOpen, isRental, ' ';
+            getline(toOpen, isRental, ' ');
             getline(toOpen, value, ' ');
             if (typeOfProperty = "Commercial")
                 {
-                    
+                    getline(toOpen, isDiscounted, ' ');
+                    getline(toOpen, discount, ' ');
+                    getline(toOpen, address, '\n');
                 }
             else if (typeOfProperty = "Residential")
                 {
                     
+                    getline(toOpen, isOccupied, ' ');
+                    getline(toOpen, address, '\n');
                 }
             else
                 {
