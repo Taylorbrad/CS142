@@ -6,7 +6,10 @@
 #include "Property.h"
 using namespace std;
 
-Commercial::Commercial()
+Commercial::Commercial(string address, bool isDiscounted, bool isRental, double discount, double value) : Property(address, isRental)
 {
+  this->isDiscounted = isDiscounted;
+  this->discount = discount;
   
+  this->value = value;
 }
