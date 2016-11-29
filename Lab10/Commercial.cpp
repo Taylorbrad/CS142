@@ -10,6 +10,9 @@ Commercial::Commercial(string address, bool isDiscounted, bool isRental, double 
 {
   this->isDiscounted = isDiscounted;
   this->discount = discount;
-  
   this->value = value;
+}
+Commercial::toString()
+{
+  
 }
