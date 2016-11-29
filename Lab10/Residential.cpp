@@ -10,7 +10,19 @@ Residential::Residential(string address, bool isOccupied, bool isRental, double 
 {
   this->isOccupied = isOccupied;
 }
-string toString()
+string Residential::toString()
 {
-  
+  stringstream ss;
+  string isRentalString = " NOT Rental ";
+  string isOccupiedString = " NOT Occupied ";
+  if (this->isOccupied)
+  {
+    isOccupiedString = " Occupied ";
+  }
+  if (this->isRental)
+  {
+    isRentalString = " Rental ";
+  }
+  ss << "Property id: " << this->id << " Address: " << this->address << " " << isRentalString <<  " Estimated Value: " << this->value << isOccupiedString;
+  return ss.str();
 }
