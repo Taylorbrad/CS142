@@ -19,9 +19,5 @@ string Property::toString()
 {
     //stringstream ss;
     //ss << "Address: " << this->address;
-    cout << this->address;
-}
-string Property::getAddress()
-{
     return this->address;
 }
