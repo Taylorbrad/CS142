@@ -5,3 +5,8 @@
 #include <vector>
 #include "Property.h"
 using namespace std;
+
+Commercial::Commercial()
+{
+  
+}
