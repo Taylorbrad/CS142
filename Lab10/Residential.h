@@ -5,3 +5,11 @@
 #include <vector>
 #include "Property.h"
 using namespace std;
+
+class Residential : public Property
+{
+    public:
+    
+    private:
+    
+};
