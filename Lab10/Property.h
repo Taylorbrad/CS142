@@ -14,6 +14,7 @@ class Property
     bool isRental;
     
     public:
+    Property(string);
     string toString();
     string getAddress();
 }
