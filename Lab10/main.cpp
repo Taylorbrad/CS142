@@ -19,6 +19,13 @@ int main()
 {
     string fileName = "";
     ifstream toOpen;
+    string address = "";
+    double value = 0;
+    double discount = 0;
+    int id = 0;
+    bool isRental = false;
+    bool isDiscounted = false;
+    bool isOccupied = false;
     
     fileName = getFileName();
     
@@ -26,7 +33,10 @@ int main()
     
     if (toOpen.is_open();
     {
-        
+        while (!toOpen.eof())
+        {
+            
+        }
     }
     else
     {
