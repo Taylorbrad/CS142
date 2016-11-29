@@ -11,5 +11,5 @@ class Residential : public Property
     public:
     
     private:
-    
+    bool isOccupied;
 };
