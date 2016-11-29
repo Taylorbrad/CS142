@@ -9,7 +9,7 @@ using namespace std;
 
 Property::Property(string addressInput)
 {
-    address = addressInput;
+    this->address = addressInput;
 }
 
 string Property::toString()
