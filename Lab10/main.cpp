@@ -20,6 +20,7 @@ int main()
     string fileName = "";
     ifstream toOpen;
     string address = "";
+    string typeOfProperty = "";
     double value = 0;
     double discount = 0;
     int id = 0;
@@ -35,7 +36,21 @@ int main()
     {
         while (!toOpen.eof())
         {
-            
+            getline(toOpen, typeOfProperty, ' ');
+            getline(toOpen, isRental, ' ';
+            getline(toOpen, value, ' ');
+            if (typeOfProperty = "Commercial")
+                {
+                    
+                }
+            else if (typeOfProperty = "Residential")
+                {
+                    
+                }
+            else
+                {
+                    
+                }
         }
     }
     else
