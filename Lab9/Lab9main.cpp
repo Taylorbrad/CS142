@@ -1,3 +1,6 @@
+/*
+
+*/
 #include <vector>
 #include <iostream>
 #include <string>
@@ -5,12 +8,11 @@
 #include <sstream>
 #include "Player.h"
 
-
 int getMenuOption()
 {
 	int option = 0;
 
-	cout << "1 - Show Players" << endl;
+	cout << endl << "1 - Show Players" << endl;
 	cout << "2 - Add Player" << endl;
 	cout << "3 - Add to Line-Up" << endl;
 	cout << "4 - Show Line-Up" << endl;
@@ -46,7 +48,7 @@ string displayPlayers(vector<Player*> allPlayers)
 	ss << "----------------------------------" << endl << endl;
 	return ss.str();
 }
-int checkIfNameExists(string name, vector<Player*> allPlayers)
+int checkIfNameExists(string name, vector<Player*> allPlayers) //Find Function, returns index for player
 {
 	int sizeOfArray = 0;
 	sizeOfArray = allPlayers.size();
@@ -184,7 +186,7 @@ void fight(vector<Player*>& lineUp)
 	playerOneThrow = (rand() % 3) + 1;
 	playerTwoThrow = (rand() % 3) + 1;
 	cout << playerOneThrow << playerTwoThrow;
-	system("pause");
+
 	if (lineUp.size() >= 2)
 	{
 		playerOneRPS = (*(lineUp[0])).getRPSThrow(playerOneThrow);
