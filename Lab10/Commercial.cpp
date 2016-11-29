@@ -11,7 +11,7 @@ Commercial::Commercial(string address, bool isDiscounted, bool isRental, double 
   this->isDiscounted = isDiscounted;
   this->discount = discount;
 }
-Commercial::toString()
+string Commercial::toString()
 {
   stringstream ss;
   string isRentalString = " NOT Rental ";
