@@ -11,6 +11,7 @@ class Commercial : public Property
 {
     public:
     Commercial(string address, bool isDiscounted, bool isRental, double discount, double value, int id);
+    string toString();
     
     private:
     bool isDiscounted;
