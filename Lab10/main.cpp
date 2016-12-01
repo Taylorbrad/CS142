@@ -15,6 +15,10 @@ string getFileName()
     
     return fileName;
 }
+int getLineType(string line)
+{
+    
+}
 int main()
 {
     string fileName = "";
@@ -24,6 +28,7 @@ int main()
     stringstream ss1;
     string address = "";
     string typeOfProperty = "";
+    string line = "";
     double value = 0;
     double discount = 0;
     bool isRental = false;
@@ -40,8 +45,10 @@ int main()
     {
         for (int id = 0; !toOpen.eof(); ++id)
         {
-            getline(toOpen, ss, '\n') //put the entire line in ss
+            
+            getline(toOpen, line, '\n') //put the entire line in 'line' string
                 /*TODO: try pulling from ss instead of toOpen in the following lines */
+            /*
             getline(toOpen, typeOfProperty, ' ');
             getline(toOpen, isRental, ' ');
             getline(toOpen, value, ' ');
@@ -50,6 +57,7 @@ int main()
                 
                 getline(toOpen, isDiscounted, ' ');
                 getline(toOpen, discount, ' ');
+                
                 getline(toOpen, address, '\n');
                     
                 Commercial* test = new Commercial(address, isDiscounted,  isRental, discount, value, id);
@@ -63,10 +71,12 @@ int main()
                 Residential* test1 = new Residential(address, isOccupied, isRental, value, id);
                 properties.push_back(test1);
             }
+        
             else
             {
                 badLinesSS.push_back(ss);
             }
+            */
         }
     }
     else
